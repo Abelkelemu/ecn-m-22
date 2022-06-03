@@ -1,0 +1,28 @@
+.footer {
+    background-color: #FFA500;
+    margin-top: 1rem;
+      .footerWrap {
+        max-width: 1450px;
+       
+        .copyright{
+          text-align: center;
+          padding-bottom: 1rem;
+          color: black;  
+        }
+        
+        .socialMedia{
+          text-align: center; 
+              
+              a{
+                  color: white;
+                  font-size: 2rem;
+                  padding: 5px;
+                  &:hover{
+                    color:black;
+                  }
+              }
+            }
+        }
+  
+      
+  }
