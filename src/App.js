@@ -17,7 +17,7 @@ import HomepageLayout from './layouts/HomepageLayout';
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import Recovery from './pages/Recovery';
-import Dashboard from './pages/Dashboard';
+import Student from './pages/Student';
 
 
 
@@ -50,14 +50,12 @@ const App = props => {
               </MainLayout>
             )} />
             
-            <Route path="/dashboard" render = {() => (
+            <Route path="/studentArea" render = {() => (
               <WithAuth>
-
-              
                <MainLayout>
-                 <Dashboard/>
+                 <Student/>
                </MainLayout>
-               </WithAuth>
+              </WithAuth>
           
             )} />
             

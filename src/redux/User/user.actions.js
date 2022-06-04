@@ -26,6 +26,11 @@ export const signOutUserStart = () => ({
     type: userTypes.USER_ERROR,
     payload: err
   });
+
+  export const signInError = err => ({
+    type: userTypes.SIGN_IN_ERROR,
+    payload: err
+  });
   
   export const resetPasswordStart = userCredentials => ({
     type: userTypes.RESET_PASSWORD_START,
@@ -40,3 +45,8 @@ export const signOutUserStart = () => ({
   export const resetUserState = () => ({
     type: userTypes.RESET_USER_STATE
   });
+
+  export const updateImageStart = requirements => ({
+      type: userTypes.UPDATE_IMAGE_START,
+      payload: requirements
+  })

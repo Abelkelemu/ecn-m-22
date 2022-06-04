@@ -12,16 +12,17 @@ import { emailSignInStart } from '../../redux/User/user.actions';
 import Button from '../forms/Button';
 import FormInput from '../forms/FormInput';
 import AuthWrapper from '../AuthWrapper';
+import userSagas from '../../redux/User/user.sagas';
 
 const mapState = ({user}) => ({
     currentUser: user.currentUser,
-    userErr: user.userErr
+    signInErr: user.signInErr
 });
 
 const SignIn = props => {
     
     const history = useHistory();
-    const {currentUser, userErr} = useSelector(mapState);
+    const {currentUser, signInErr} = useSelector(mapState);
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState();
@@ -45,10 +46,10 @@ const SignIn = props => {
     },[currentUser]);
 
     useEffect(()=> {
-        if(Array.isArray(userErr) && userErr.length >0){
-            setErrors(userErr);
+        if(Array.isArray(signInErr) && signInErr.length >0){
+            setErrors(signInErr);
         }
-    },[userErr])
+    },[signInErr])
 
     const handleSubmit = e => {
         e.preventDefault();
