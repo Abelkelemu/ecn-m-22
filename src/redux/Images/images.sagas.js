@@ -1,9 +1,10 @@
-import { takeLatest, call, all, put } from "redux-saga/effects";
+import { takeLatest, call, all, put, take } from "redux-saga/effects";
 import { auth, handleUserProfile, getCurrentUser } from "../../firebase/utils";
 import { setStoryImages } from "./images.actions";
 import { handleAddImage, handleDeleteImage, handleFetchStoryImages } from "./images.helper";
 import imagesTypes from "./images.types";
-
+import { setPercentage, fetchStoryImagesStart } from "./images.actions";
+import { buffers } from "redux-saga";
 export function* addImage ( {payload}) {
  
  
@@ -11,14 +12,28 @@ export function* addImage ( {payload}) {
     try{
       const timestamp = new Date();
   
-      yield handleAddImage({
+      const channel = yield handleAddImage({
         ...payload,
         studentUID: auth.currentUser.uid,
         createdDate: timestamp
       });
-      // yield put(
-      //   fetchProductsStart()
-      // );
+
+      while(true){
+        const {progress=0, downloadURL,error} = yield take (channel,buffers.sliding(5));
+        if(error){
+          channel.close();
+          return ;
+        }
+        if(downloadURL){
+          yield put(fetchStoryImagesStart())
+          yield put (setPercentage(0))
+          return;
+        }
+        yield put(setPercentage(progress))
+        
+      }
+          
+      
   
     } catch (err){
       //  console.log(err);

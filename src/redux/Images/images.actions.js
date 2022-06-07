@@ -21,3 +21,8 @@ export const addImageStart = imageData => ({
     type: imagesTypes.SET_STORY_IMAGES,
     payload: storyImage
 });
+
+export const setPercentage = percentage => ({
+  type: imagesTypes.SET_PERCENTAGE,
+  payload: percentage
+})

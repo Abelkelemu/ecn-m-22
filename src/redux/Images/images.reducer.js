@@ -1,7 +1,8 @@
 import imagesTypes from "./images.types";
 
 const INITIAL_STATE = {
-      images: []
+      images: [],
+      percentage : 0
 };
 
 const imagesReducer = (state=INITIAL_STATE, action) => {
@@ -10,6 +11,11 @@ const imagesReducer = (state=INITIAL_STATE, action) => {
             return{
                 ...state,
                 images: action.payload
+            }
+        case imagesTypes.SET_PERCENTAGE:
+            return{
+                ...state,
+                percentage: action.payload
             }
         default:
             return state;

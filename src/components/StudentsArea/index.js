@@ -79,13 +79,13 @@ const StudentsArea = props => {
         // resetForm();
       }
 
-      const handleSubmit3 = e => {
-        e.preventDefault();
-        dispatch(
-          addImageStart({image})  
-            )
-         resetForm();
-      }
+      // const handleSubmit3 = e => {
+      //   e.preventDefault();
+      //   dispatch(
+      //     addImageStart({image})  
+      //       )
+      //    resetForm();
+      // }
 
     const types = ['image/png', 'image/jpeg', 'image/jpg']; 
     
@@ -117,7 +117,7 @@ const StudentsArea = props => {
             <div className="updateProductImage">
 
           
-<form onSubmit = {handleSubmit3}>
+<form onSubmit = {handleSubmit2}>
 
  
  <label htmlFor="yearbook-small-image"><h2>Image One</h2></label>
