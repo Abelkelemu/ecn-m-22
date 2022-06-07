@@ -50,3 +50,18 @@ export const signOutUserStart = () => ({
       type: userTypes.UPDATE_IMAGE_START,
       payload: requirements
   })
+
+  export const updateTextStart = requirements => ({
+    type: userTypes.UPDATE_TEXT_START,
+    payload: requirements
+})
+
+// export const addImageStart = imageData => ({
+//   type: userTypes.ADD_NEW_IMAGE_START,
+//   payload: imageData
+// });
+
+// export const deleteImageStart = imageID => ({
+//   type: userTypes.DELETE_IMAGE_START,
+//   payload: imageID
+// });

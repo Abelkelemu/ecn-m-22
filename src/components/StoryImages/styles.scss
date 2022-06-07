@@ -1,0 +1,34 @@
+.preview{
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 2rem 0;
+    .images {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 3rem -10px 0;
+    }
+}
+    
+
+.image {
+    width: 33.3333333333333333333%;
+
+    margin: 0 auto 2rem;
+    padding: 0 10px;
+    //float:left;
+    
+
+    .thumb{
+        display: block;
+        width: 100%;
+        
+        img{
+            display: block;
+            height: 35rem;
+            width: 100%;
+            margin: 0px;
+        }
+    }
+
+}

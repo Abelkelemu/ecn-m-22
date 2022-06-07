@@ -43,7 +43,7 @@ const Header = props => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/">
+                            <Link to="/storypage">
                                 Storybook
                             </Link>
                         </li>

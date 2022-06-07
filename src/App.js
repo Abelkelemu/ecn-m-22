@@ -18,6 +18,7 @@ import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import Recovery from './pages/Recovery';
 import Student from './pages/Student';
+import StoryPage from './pages/StoryPage';
 
 
 
@@ -50,6 +51,8 @@ const App = props => {
               </MainLayout>
             )} />
             
+       
+
             <Route path="/studentArea" render = {() => (
               <WithAuth>
                <MainLayout>
@@ -58,6 +61,12 @@ const App = props => {
               </WithAuth>
           
             )} />
+
+            <Route path="/storypage" render = {() => (
+                <MainLayout>
+                <StoryPage/>
+               </MainLayout>
+            )} />  
             
 
           </Switch>

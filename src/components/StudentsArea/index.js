@@ -13,7 +13,8 @@ import Modal from '../Modal';
 import FormInput from '../forms/FormInput';
 
 //actions
-import { updateImageStart } from '../../redux/User/user.actions';
+import { updateImageStart, updateTextStart } from '../../redux/User/user.actions';
+import { addImageStart } from '../../redux/Images/images.actions';
 
 const mapState = ({user}) => ({
   currentUser: user.currentUser
@@ -27,6 +28,7 @@ const StudentsArea = props => {
     const [image, setImage] = useState(null);
     const [imagePreview, setimagePreview] = useState();
     const [error,setError] = useState('');
+    const {id, yearbookimgOneThumbnail } = currentUser;
    // const [tempoID, setTempoID] = useState('');
     
     const resetImage = () => setImage(null);
@@ -50,7 +52,7 @@ const StudentsArea = props => {
         toggleModal,
       };
      
-      const {id} = currentUser;
+    
       
       const handleSubmit = e => {
         e.preventDefault();
@@ -63,6 +65,26 @@ const StudentsArea = props => {
           })  
             )
         resetForm();
+      }
+
+      const handleSubmit2 = e => {
+        e.preventDefault();
+        dispatch(
+          updateTextStart({
+            id ,
+            field :'yearbookimgOneThumbnail',
+            newText: ''
+          })  
+            )
+        // resetForm();
+      }
+
+      const handleSubmit3 = e => {
+        e.preventDefault();
+        dispatch(
+          addImageStart({image})  
+            )
+         resetForm();
       }
 
     const types = ['image/png', 'image/jpeg', 'image/jpg']; 
@@ -86,7 +108,7 @@ const StudentsArea = props => {
         <div>
           
             <h1>Yearbook</h1>
-
+           
 
                 <Button onClick={() => toggleModal()}>
                     Add an image
@@ -95,7 +117,7 @@ const StudentsArea = props => {
             <div className="updateProductImage">
 
           
-<form onSubmit = {handleSubmit}>
+<form onSubmit = {handleSubmit3}>
 
  
  <label htmlFor="yearbook-small-image"><h2>Image One</h2></label>
@@ -136,12 +158,11 @@ const StudentsArea = props => {
 </form>
 
 </div>
-
                 </Modal>
                 <br />
-                <Button>
+                <Button onClick={handleSubmit2}>
                     Delete Image
-                </Button>
+                 </Button>
                 <br />
                 <Button>
                     Update Image
@@ -157,10 +178,12 @@ const StudentsArea = props => {
                     Delete Image
                 </Button>
                 <br />
-                <Button>
+                <Button >
                     Update Image
                 </Button>
         </div>
+
+  
     )
 };
 
