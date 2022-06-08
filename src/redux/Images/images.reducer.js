@@ -2,6 +2,7 @@ import imagesTypes from "./images.types";
 
 const INITIAL_STATE = {
       images: [],
+    
       percentage : 0
 };
 

@@ -1,13 +1,14 @@
 import './styles.scss'
-
+import { motion } from 'framer-motion';
 const ProgressBar = ({percentage}) => {
     
     console.log(percentage)
     return ( 
-        <div className="progress-bar" style = {{width:percentage+'%'}}>
-        
-            
-        </div>
+        <motion.div className="progress-bar"
+            initial={{width:0}}
+            animate={{width:percentage+'%'}}
+        >  
+        </motion.div>
      );
 }
  

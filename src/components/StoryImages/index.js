@@ -77,7 +77,9 @@ const StoryImages = () => {
 
     useEffect(() => {
         dispatch(
-            fetchStoryImagesStart()
+            fetchStoryImagesStart({
+              pageSize:16
+            })
         )
     },[])
     
@@ -87,7 +89,8 @@ const StoryImages = () => {
         dispatch(
             fetchStoryImagesStart({
                 startAfterDoc : queryDoc,
-                persistImages: data
+                persistImages: data,
+                pageSize: 16
             })
         )
     }
@@ -96,10 +99,10 @@ const StoryImages = () => {
     }
 
 
-    if(!Array.isArray(data)) return null;
-    if(data.length<1){
+    if(!Array.isArray(data) && !currentUser) return null;
+    if(data.length<1 && !currentUser){
         return (
-            <div className="images">
+            <div className="img-grid">
                 No image found.
             </div>
         )
@@ -108,81 +111,65 @@ const StoryImages = () => {
 
         <div className="preview">
         
-            <h1>Story Book </h1>
-          
-             {percentage>0 && <ProgressBar percentage = {percentage}/>}
-               {percentage===0 && currentUser && <span onClick={() => toggleModal()}>
-                    +
-                </span>}
-                <div className="images">
-           
-                <Modal {...configModal}>
-            <div className="updateProductImage">
+          <h1>Story Book </h1>
+          {percentage>0 && <ProgressBar percentage = {percentage}/>}
+          {percentage===0 && currentUser && <span onClick={() => toggleModal()}>
+              +
+          </span>}
+     
+          <div className="img-grid">
+  
+            <Modal {...configModal}>
+              <div className="addStoryImage">
+                <form onSubmit = {handleSubmit}>
+                  <label htmlFor="yearbook-small-image"><h2>Image Preview</h2></label>
 
-          
-<form onSubmit = {handleSubmit}>
-
- 
- <label htmlFor="yearbook-small-image"><h2>Image One</h2></label>
-
-     <Button onClick={triggerFileSelectPopup}>
-       Choose an image
-     </Button>
-
-     <input 
-       type="file" 
-       name="yearbook-small-image"
-       className="imgoneinput" 
-       onChange={ImgHandler} 
-       ref ={inputRef} 
-       style={{display:"none"}}
-     />
-
-
-     <div className="wrap">
-
-       <div className="image-container">
-
-       {
-         image  ? <img   src={imagePreview} ></img> : <img onClick={triggerFileSelectPopup} src={uploadImg}/> 
-       }
-
-       </div>
-     </div> 
-
-     <Button type='submit' className="btn">
-       Finish
-     </Button>
-
-     <Button onClick={() => {setHideModal(true); resetImage()}}>
-       Close
-     </Button>
-
-</form>
-
-</div>
-                </Modal>
-
-
-
+                  <Button onClick={triggerFileSelectPopup}>
+                    Choose an image
+                  </Button>
+     
+                  <input 
+                    type="file" 
+                    name="yearbook-small-image"
+                    className="imgoneinput" 
+                    onChange={ImgHandler} 
+                    ref ={inputRef} 
+                    style={{display:"none"}}
+                  />
+                  <div className="wrap">
+                    <div className="image-container">
+                        {
+                          image  ? <img   src={imagePreview} ></img> : <img onClick={triggerFileSelectPopup} src={uploadImg}/> 
+                        }
+                    </div>
+                  </div> 
+                  <Button type='submit' className="btn">
+                      Confirm
+                  </Button>
+                  <Button onClick={() => {setHideModal(true); resetImage()}}>
+                      Close
+                  </Button>
+                </form>
+              </div>
+            </Modal>
 
             {data.map((sImage,pos)=>{
                 const {storyImageThumbnail} = sImage;
                 if(!storyImageThumbnail) return null;
                 const configImage = {
                     storyImageThumbnail
-                }
-                
+                } 
                 return(
                     <Image {...configImage}/>
                 );
             })}
-        </div>
-            {!isLastPage && (<LoadMore {...configLoadMore}/>)}
-            
-        </div>
+          </div>
         
-     );
+        <div className="loadMoreBtn">
+        {!isLastPage && (<LoadMore {...configLoadMore}/>)}
+        </div>
+      </div>
+    );
 }
  
 export default StoryImages;

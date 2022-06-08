@@ -1,8 +1,10 @@
 .preview{
-    display: block;
-    width: 100%;
-    padding: 0;
-    margin: 2rem 0;
+   
+    .loadMoreBtn{
+        max-width: 140px;
+        margin: 5px auto;
+    }
+    
     
     span{
         display: block;
@@ -21,33 +23,72 @@
             background-color: #efb6b2;
         }
     }
-    .images {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 3rem -10px 0;
 
-    }
-}
-    
+    .img-grid {
+        margin: 50px auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 40px;
 
-.image {
-    width: 33.3333333333333333333%;
-
-    margin: 0 auto 2rem;
-    padding: 0 10px;
-    //float:left;
-    
-
-    .thumb{
-        display: block;
-        width: 100%;
         
-        img{
-            display: block;
-            height: 35rem;
-            width: 100%;
-            margin: 0px;
-        }
     }
-
 }
+
+.img-wrap{
+    overflow: hidden;
+    height: 0;
+    padding: 50% 0;
+    /* padding controls height, will always be perfectly square regardless of width */
+    position: relative;
+    opacity: 0.8;
+
+    img{
+        min-width: 100%;
+        min-height: 100%;
+        max-width: 150%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+    }
+}
+
+
+.wrap{
+      max-width: 100%;
+    .image-container{
+       text-align: center;
+     
+       
+      img{
+        margin: 0 auto;
+        max-width: 250px;
+        max-height: 250px;
+        box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
+        border: 3px solid white; z-index: 100;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+        cursor: pointer;
+      //  margin-left: 1rem;
+  
+      
+      }
+    }
+  
+  }
+  
+  .addStoryImage{
+    max-width: 250px;
+    
+    margin: 0 auto;
+    .btn{
+      display: inline-block;
+      margin: 10px 12.5px;
+      max-width: 227px;
+    }
+    h2{
+        text-align: center;
+    }
+    
+   
+  }

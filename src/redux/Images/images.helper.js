@@ -33,7 +33,8 @@ export const handleAddImage = payload => {
         .set({
           storyImageThumbnail : downloadURL,
           createdDate : createdDate,
-          studentUID: studentUID
+          studentUID: studentUID,
+          imageName: `${imgname} + ${image.name}`
         })
       .then(()=> {
         emitter({downloadURL})
@@ -111,10 +112,10 @@ export const handleAddImage = payload => {
   }
 
 
-  export const handleFetchStoryImages = ({startAfterDoc,persistImages = []}) => {
+  export const handleFetchStoryImages = ({pageSize, startAfterDoc,persistImages = []}) => {
   
     return new Promise((resolve, reject) => {
-      const pageSize =6;   
+  
 
       let ref = firestore.collection('storyImages').orderBy('createdDate','desc').limit(pageSize);
       

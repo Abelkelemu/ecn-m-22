@@ -5,24 +5,27 @@ export const addImageStart = imageData => ({
     payload: imageData
   });
   
+
+export const setPercentage = percentage => ({
+  type: imagesTypes.SET_PERCENTAGE,
+  payload: percentage
+})
+
   export const deleteImageStart = imageID => ({
     type: imagesTypes.DELETE_IMAGE_START,
     payload: imageID
   });
   
 
-  export const fetchStoryImagesStart = (filters = {}) => ({
-    type: imagesTypes.FETCH_STORY_IMAGES_START,
-    payload: filters
-    
-  });
 
-  export const setStoryImages = storyImage => ({
-    type: imagesTypes.SET_STORY_IMAGES,
-    payload: storyImage
+
+export const fetchStoryImagesStart = (filters = {}) => ({
+  type: imagesTypes.FETCH_STORY_IMAGES_START,
+  payload: filters
+  
 });
 
-export const setPercentage = percentage => ({
-  type: imagesTypes.SET_PERCENTAGE,
-  payload: percentage
-})
+export const setStoryImages = storyImage => ({
+  type: imagesTypes.SET_STORY_IMAGES,
+  payload: storyImage
+});
