@@ -136,7 +136,7 @@ export const handleAddImage = payload => {
               resolve({
                 data,
                 queryDoc:snapshot.docs[totalCount-1],
-                isLastPage: totalCount< pageSize
+                isLastPage: totalCount< pageSize 
           })
         })
           .catch(err => {

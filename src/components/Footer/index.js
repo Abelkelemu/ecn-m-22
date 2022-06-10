@@ -12,6 +12,7 @@ const Footer = props => {
               <a href="https://www.instagram.com/abel_kd_/" >Contact me</a> 
               <a href="https://www.instagram.com/abel_kd_/">
               <i class="fab fa-instagram"></i>
+              
               </a>          
         </div>
         

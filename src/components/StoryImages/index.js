@@ -76,6 +76,7 @@ const StoryImages = () => {
     }
 
     useEffect(() => {
+
         dispatch(
             fetchStoryImagesStart({
               pageSize:16
@@ -84,15 +85,17 @@ const StoryImages = () => {
     },[])
     
     
+    
 
     const handleLoadMore = () => {
-        dispatch(
-            fetchStoryImagesStart({
-                startAfterDoc : queryDoc,
-                persistImages: data,
-                pageSize: 16
-            })
-        )
+      dispatch(
+        fetchStoryImagesStart({
+            startAfterDoc : queryDoc,
+            persistImages: data,
+            pageSize: 16
+        })
+    )   
+      
     }
     const configLoadMore = {
         onLoadMoreEvt: handleLoadMore,

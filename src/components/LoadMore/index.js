@@ -7,9 +7,10 @@ const LoadMore = ({
 }) => {
   return (
     <div className="loadMore">
-      <Button onClick={() => onLoadMoreEvt()}>
-         Load More
-      </Button>
+      
+      <span onClick={() => onLoadMoreEvt()}>
+        <i class="fas fa-angle-right"></i>
+      </span>
     </div>
     
   );
