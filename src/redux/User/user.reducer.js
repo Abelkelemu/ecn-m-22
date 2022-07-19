@@ -6,7 +6,8 @@ const INITIAL_STATE = {
     userErr: [],
     signInErr: [],
     student: [],
-    allStudents: []
+    allStudents: [],
+    userPercentage: 0
 };
 
 const userReducer = (state=INITIAL_STATE, action) => {
@@ -50,6 +51,11 @@ const userReducer = (state=INITIAL_STATE, action) => {
             return{
                 ...state,
                 allStudents: action.payload
+            }
+        case userTypes.SET_USER_PERCENTAGE:
+            return{
+                ...state,
+                userPercentage: action.payload
             }
         default:
             return state;

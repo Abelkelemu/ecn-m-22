@@ -11,6 +11,7 @@ import uploadImg from '../../assets/uploadImg.PNG'
 import Button from '../forms/Button';
 import Modal from '../Modal';
 import FormInput from '../forms/FormInput';
+import ProgressBar from '../ProgressBar';
 
 //actions
 import { updateImageStart, updateTextStart, fetchUserStart } from '../../redux/User/user.actions';
@@ -20,20 +21,23 @@ import { addImageStart } from '../../redux/Images/images.actions';
 
 const mapState = ({user}) => ({
   currentUser: user.currentUser,
+  userPercentage: user.userPercentage,
   student: user.student
 });
 
 const StudentsArea = props => {
 
     const dispatch = useDispatch();
-    const [hideModal, setHideModal] = useState(true);
+    const {currentUser, student, userPercentage } = useSelector(mapState);
     const inputRef = React.useRef();
-    const {currentUser, student } = useSelector(mapState);
+    const {id } = currentUser;
+    const { yearbookimgOneThumbnail} = student;
+
+    const [hideModal, setHideModal] = useState(true);
     const [image, setImage] = useState(null);
     const [imagePreview, setimagePreview] = useState();
     const [error,setError] = useState('');
-    const {id } = currentUser;
-    const { yearbookimgOneThumbnail} = student;
+   
    // const [tempoID, setTempoID] = useState('');
     
     const resetImage = () => setImage(null);
@@ -55,11 +59,9 @@ const StudentsArea = props => {
     const configModal = {
         hideModal,
         toggleModal,
-      };
-     
-    
-      
-      const handleSubmit = e => {
+    };
+       
+    const handleSubmit = e => {
         e.preventDefault();
         dispatch(
           updateImageStart({
@@ -68,11 +70,11 @@ const StudentsArea = props => {
             field :'yearbookimgOneThumbnail',
             storageFolder : 'yearbook-images-one'
           })  
-            )
+        )
         resetForm();
-      }
+    }
 
-      const handleSubmit2 = e => {
+    const handleSubmit2 = e => {
         e.preventDefault();
         dispatch(
           updateTextStart({
@@ -80,9 +82,8 @@ const StudentsArea = props => {
             field :'yearbookimgOneThumbnail',
             newText: ''
           })  
-            )
-        // resetForm();
-      }
+        )
+    }
 
       // const handleSubmit3 = e => {
       //   e.preventDefault();
@@ -115,84 +116,64 @@ const StudentsArea = props => {
         dispatch(
             fetchUserStart(id)
         )
-    },[ yearbookimgOneThumbnail])
+    },[yearbookimgOneThumbnail])
+
+
     return (
  
         <div className='accountWrap'>
-          
-            <h1>Yearbook</h1>
-           
-                {yearbookimgOneThumbnail? <img src={yearbookimgOneThumbnail} alt="" /> : <img src ={uploadImg}/>}
+         
+            <h1>Yearbook</h1>          
+            {userPercentage>0 && <ProgressBar percentage = {userPercentage}/>}
+            {yearbookimgOneThumbnail? <img src={yearbookimgOneThumbnail} alt="" /> : <img src ={uploadImg} onClick={() => toggleModal()} />}
+     
+            <Modal {...configModal}>
 
+              <div className="updateProductImage">
+              
+                <form onSubmit = {handleSubmit}>                
+              
+                  <label htmlFor="yearbook-small-image"><h2>Image One</h2></label>
+              
+                    <Button onClick={triggerFileSelectPopup}>
+                     Choose an image
+                    </Button>
+              
+                    <input 
+                      type="file" 
+                      name="yearbook-small-image"
+                      className="imgoneinput" 
+                      onChange={ImgHandler} 
+                      ref ={inputRef} 
+                      style={{display:"none"}}
+                    />    
+                    
+                    <div className="wrap">
+                    
+                      <div className="image-container">
+                        {
+                          image  ? <img   src={imagePreview} ></img> : <img onClick={triggerFileSelectPopup} src={uploadImg}/> 
+                        }
+                      </div>
 
-                <Button onClick={() => toggleModal()}>
-                    Add an image
-                </Button>
+                    </div> 
 
-                <Modal {...configModal}>
-                  <div className="updateProductImage">
-                    <form onSubmit = {handleSubmit}>
-                      
-                      <label htmlFor="yearbook-small-image"><h2>Image One</h2></label>
-                      <Button onClick={triggerFileSelectPopup}>
-                         Choose an image
-                      </Button>
-                      <input 
-                        type="file" 
-                        name="yearbook-small-image"
-                        className="imgoneinput" 
-                        onChange={ImgHandler} 
-                        ref ={inputRef} 
-                        style={{display:"none"}}
-                      />
-                        
-                        <div className="wrap">
-                            <div className="image-container">
-                              {
-                                image  ? <img   src={imagePreview} ></img> : <img onClick={triggerFileSelectPopup} src={uploadImg}/> 
-                              }
+                    <Button type='submit' className="btn">
+                      Finish
+                    </Button>
 
-                            </div>
-                        </div> 
+                    <Button onClick={() => {setHideModal(true); resetImage()}}>
+                      Close
+                    </Button>
 
-                      <Button type='submit' className="btn">
-                        Finish
-                      </Button>
-                      <Button onClick={() => {setHideModal(true); resetImage()}}>
-                        Close
-                      </Button>
+                </form>
+              </div>
+            </Modal>
 
-                    </form>
-                  </div>
-                </Modal>
-
-
-                <br />
-
-                <Button onClick={handleSubmit2}>
-                    Delete Image
-                 </Button>
-                <br />
-
-                <Button>
-                    Update Image
-                </Button>
-            
+            <i class="fa fa-trash-alt" aria-hidden="true" onClick={handleSubmit2}></i>
+            <i class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal()}></i>
+                
             <h1>Yellow Page</h1>
-
-                <Button>
-                    Add  an Image
-                </Button>
-
-                <br />
-                <Button>
-                    Delete Image
-                </Button>
-
-                <br />
-                <Button >
-                    Update Image
-                </Button>
         </div>
 
   

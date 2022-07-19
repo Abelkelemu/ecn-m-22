@@ -69,6 +69,15 @@ export const setUser = user => ({
 });
 
 
+export const setUserPercentage = percentage => ({
+  type: userTypes.SET_USER_PERCENTAGE,
+  payload: percentage
+})
+
+
+
+/////////////////////////////////
+
 export const fetchAllUsersStart = () => ({
   type: userTypes.FETCH_ALL_USERS_START,
 })

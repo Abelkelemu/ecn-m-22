@@ -2,6 +2,7 @@ import { auth } from "../../firebase/utils";
 import { firestore, storage } from "../../firebase/utils";
 import { v4 as uuidv4 } from "uuid";
 import { userError } from "./user.actions";
+import { eventChannel } from "redux-saga";
 export const handleResetPasswordAPI = (email) => {
 
     const config = {
@@ -21,41 +22,112 @@ export const handleResetPasswordAPI = (email) => {
 
 export const handleUpdateImage = (payload) => {
    
-    const id = payload.id
-    const image = payload.image
-    const field = payload.field
-    const storageFolder = payload.storageFolder
-    const imgname = uuidv4();
+  const id = payload.id
+  const image = payload.image
+  const field = payload.field
+  const storageFolder = payload.storageFolder
+  const imgname = uuidv4();
 
-    return new Promise((resolve, reject) => {
+    return eventChannel(emitter => {
+        
+    const uploadTask = storage.ref(`${storageFolder}/${imgname}-${image.name}`).put(image);  
+    uploadTask.on('state_changed' , snapshot => {
+      const  progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+     // console.log(progress);
+      emitter({progress});
+    },
+    error => {
+      console.log(error);
+      emitter({error})
+    },
+    () => {storage.ref(`${storageFolder}/${imgname}-${image.name}`).getDownloadURL().then(downloadURL => {
       
-      
-      const uploadTask = storage.ref(`${storageFolder}/${imgname}-${image.name}`).put(image);
-          
-      uploadTask.on('state_changed' , snapshot => {
-
-        //const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        //console.log(progress)
-    }, err => err
-    ,() => {
-      
-      storage.ref(`${storageFolder}/${imgname}-${image.name}`).getDownloadURL().then(downloadURL => {
       firestore
         .collection('students')
         .doc(id)
         .update({
-          [field] : downloadURL
+           [field] : downloadURL
         })
-        .then(()=>{
-          resolve();
-        })
-        .catch(err=>{
-          reject(err);
-        })
+      .then(()=> {
+        emitter({downloadURL})
+      })
     })
-})  
-        });    
+  });
+  return () => {
+    uploadTask.off("state_changed");
+  }
+})
+
+//   return new Promise((resolve, reject) => {
+    
+    
+//     const uploadTask = storage.ref(`${storageFolder}/${imgname}-${image.name}`).put(image);
+        
+//     uploadTask.on('state_changed' , snapshot => {
+
+//       //const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+//       //console.log(progress)
+//   }, err => err
+//   ,() => {
+    
+//     storage.ref(`${storageFolder}/${imgname}-${image.name}`).getDownloadURL().then(downloadURL => {
+//     firestore
+//       .collection('students')
+//       .doc(id)
+//       .update({
+//         [field] : downloadURL
+//       })
+//       .then(()=>{
+//         resolve();
+//       })
+//       .catch(err=>{
+//         reject(err);
+//       })
+//   })
+// })  
+//       });    
 }
+
+
+
+
+// export const handleUpdateImage = (payload) => {
+   
+//     const id = payload.id
+//     const image = payload.image
+//     const field = payload.field
+//     const storageFolder = payload.storageFolder
+//     const imgname = uuidv4();
+
+//     return new Promise((resolve, reject) => {
+      
+      
+//       const uploadTask = storage.ref(`${storageFolder}/${imgname}-${image.name}`).put(image);
+          
+//       uploadTask.on('state_changed' , snapshot => {
+
+//         //const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+//         //console.log(progress)
+//     }, err => err
+//     ,() => {
+      
+//       storage.ref(`${storageFolder}/${imgname}-${image.name}`).getDownloadURL().then(downloadURL => {
+//       firestore
+//         .collection('students')
+//         .doc(id)
+//         .update({
+//           [field] : downloadURL
+//         })
+//         .then(()=>{
+//           resolve();
+//         })
+//         .catch(err=>{
+//           reject(err);
+//         })
+//     })
+// })  
+//         });    
+// }
 
 export const handleUpdateText = (payload) => {
       const id = payload.id

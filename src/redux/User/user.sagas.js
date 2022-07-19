@@ -1,9 +1,9 @@
-import { takeLatest, call, all, put } from "redux-saga/effects";
+import { takeLatest, call, all, put, take } from "redux-saga/effects";
 import { auth, handleUserProfile, getCurrentUser } from "../../firebase/utils";
 import userTypes from "./user.types";
-import { signInSuccess, signOutUserSuccess, userError, resetPasswordSuccess, signInError, setUser, fetchUserStart } from "./user.actions";
+import { signInSuccess, signOutUserSuccess, userError, resetPasswordSuccess, signInError, setUser, fetchUserStart, setUserPercentage } from "./user.actions";
 import { handleResetPasswordAPI, handleUpdateImage,handleUpdateText, handleFetchUser} from "./user.helpers";
-
+import { buffers } from "redux-saga";
 export function* getSnapshotFromUserAuth(user) {
     try{
      const userRef = yield call(handleUserProfile,{ userAuth: user});
@@ -96,9 +96,22 @@ export function* onResetPasswordStart(){
 export function* updateImage ({payload}) {
   const uID = payload.id;
   try{
-    yield handleUpdateImage(payload)
+    const channel = yield handleUpdateImage(payload)
     
-    yield put(fetchUserStart(uID))
+    while(true){
+      const {progress=0, downloadURL,error} = yield take (channel,buffers.sliding(5));
+      if(error){
+        channel.close();
+        return ;
+      }
+      if(downloadURL){
+        yield put(fetchUserStart(uID))
+        yield put(setUserPercentage(0))
+        return;
+      }
+      yield put(setUserPercentage(progress))
+    }
+   
 
   }catch(err){
     //console.log(err)
