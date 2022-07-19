@@ -13,22 +13,27 @@ import Modal from '../Modal';
 import FormInput from '../forms/FormInput';
 
 //actions
-import { updateImageStart, updateTextStart } from '../../redux/User/user.actions';
+import { updateImageStart, updateTextStart, fetchUserStart } from '../../redux/User/user.actions';
 import { addImageStart } from '../../redux/Images/images.actions';
 
+
+
 const mapState = ({user}) => ({
-  currentUser: user.currentUser
+  currentUser: user.currentUser,
+  student: user.student
 });
+
 const StudentsArea = props => {
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const [hideModal, setHideModal] = useState(true);
     const inputRef = React.useRef();
-    const {currentUser } = useSelector(mapState);
+    const {currentUser, student } = useSelector(mapState);
     const [image, setImage] = useState(null);
     const [imagePreview, setimagePreview] = useState();
     const [error,setError] = useState('');
-    const {id, yearbookimgOneThumbnail } = currentUser;
+    const {id } = currentUser;
+    const { yearbookimgOneThumbnail} = student;
    // const [tempoID, setTempoID] = useState('');
     
     const resetImage = () => setImage(null);
@@ -102,81 +107,88 @@ const StudentsArea = props => {
         else {
             setError('Please select a valid image type (jpg , jpeg or png)');
         }
-    } 
+    }
+    
+    
+    useEffect(() => {
+
+        dispatch(
+            fetchUserStart(id)
+        )
+    },[ yearbookimgOneThumbnail])
     return (
  
-        <div>
+        <div className='accountWrap'>
           
             <h1>Yearbook</h1>
            
+                {yearbookimgOneThumbnail? <img src={yearbookimgOneThumbnail} alt="" /> : <img src ={uploadImg}/>}
+
 
                 <Button onClick={() => toggleModal()}>
                     Add an image
                 </Button>
+
                 <Modal {...configModal}>
-            <div className="updateProductImage">
+                  <div className="updateProductImage">
+                    <form onSubmit = {handleSubmit}>
+                      
+                      <label htmlFor="yearbook-small-image"><h2>Image One</h2></label>
+                      <Button onClick={triggerFileSelectPopup}>
+                         Choose an image
+                      </Button>
+                      <input 
+                        type="file" 
+                        name="yearbook-small-image"
+                        className="imgoneinput" 
+                        onChange={ImgHandler} 
+                        ref ={inputRef} 
+                        style={{display:"none"}}
+                      />
+                        
+                        <div className="wrap">
+                            <div className="image-container">
+                              {
+                                image  ? <img   src={imagePreview} ></img> : <img onClick={triggerFileSelectPopup} src={uploadImg}/> 
+                              }
 
-          
-<form onSubmit = {handleSubmit2}>
+                            </div>
+                        </div> 
 
- 
- <label htmlFor="yearbook-small-image"><h2>Image One</h2></label>
+                      <Button type='submit' className="btn">
+                        Finish
+                      </Button>
+                      <Button onClick={() => {setHideModal(true); resetImage()}}>
+                        Close
+                      </Button>
 
-     <Button onClick={triggerFileSelectPopup}>
-       Choose an image
-     </Button>
-
-     <input 
-       type="file" 
-       name="yearbook-small-image"
-       className="imgoneinput" 
-       onChange={ImgHandler} 
-       ref ={inputRef} 
-       style={{display:"none"}}
-     />
-
-
-     <div className="wrap">
-
-       <div className="image-container">
-
-       {
-         image  ? <img   src={imagePreview} ></img> : <img onClick={triggerFileSelectPopup} src={uploadImg}/> 
-       }
-
-       </div>
-     </div> 
-
-     <Button type='submit' className="btn">
-       Finish
-     </Button>
-
-     <Button onClick={() => {setHideModal(true); resetImage()}}>
-       Close
-     </Button>
-
-</form>
-
-</div>
+                    </form>
+                  </div>
                 </Modal>
+
+
                 <br />
+
                 <Button onClick={handleSubmit2}>
                     Delete Image
                  </Button>
                 <br />
+
                 <Button>
                     Update Image
                 </Button>
             
             <h1>Yellow Page</h1>
 
-            <Button>
+                <Button>
                     Add  an Image
                 </Button>
+
                 <br />
                 <Button>
                     Delete Image
                 </Button>
+
                 <br />
                 <Button >
                     Update Image

@@ -1,13 +1,18 @@
 import ImageModal from "../../ImageModal";
 import { useState } from "react";
 import { motion } from "framer-motion";
+
+
 const Image = ({storyImageThumbnail}) => {
+
    const [hideModal, setHideModal] = useState(true);
    const toggleModal = () => setHideModal(!hideModal);
+
    const configModal = {
       hideModal,
       toggleModal,
     };
+    
     if(!storyImageThumbnail) return null;
     return ( 
        <div className="preview">

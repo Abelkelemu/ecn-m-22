@@ -1,11 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchStoryImagesStart } from "../../redux/Images/images.actions";
-import LoadMore from "../LoadMore";
 import './styles.scss';
-import { AnimatePresence, motion } from "framer-motion";
+
+// actions
+import { fetchStoryImagesStart } from "../../redux/Images/images.actions";
+
+// components
+import LoadMore from "../LoadMore";
+
+// assets
 import imgTry from "./../../assets/uploadImg.PNG"
+
+
+// UI
+import { AnimatePresence, motion } from "framer-motion";
+
 const mapState = ({imagesData}) => ({
     sImages : imagesData.images
 

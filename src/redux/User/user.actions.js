@@ -56,6 +56,28 @@ export const signOutUserStart = () => ({
     payload: requirements
 })
 
+
+export const fetchUserStart = uID => ({
+  type: userTypes.FETCH_USER_START,
+  payload: uID,
+})
+
+
+export const setUser = user => ({
+  type: userTypes.SET_USER,
+  payload: user
+});
+
+
+export const fetchAllUsersStart = () => ({
+  type: userTypes.FETCH_ALL_USERS_START,
+})
+
+
+export const setAllUsers = users => ({
+  type: userTypes.SET_ALL_USERS,
+  payload: users
+});
 // export const addImageStart = imageData => ({
 //   type: userTypes.ADD_NEW_IMAGE_START,
 //   payload: imageData

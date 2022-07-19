@@ -138,3 +138,23 @@ export const handleUpdateText = (payload) => {
 //       })
 //   });
 // }
+
+export const handleFetchUser = uID => {
+  return new Promise((resolve, reject) => {
+    firestore
+      .collection('students')
+      .doc(uID)
+      .get()
+      .then(snap => {
+        if (snap.exists) {
+          resolve({
+            ...snap.data()
+          })
+        }
+      })
+      .catch(err => {
+        reject(err);
+        
+      })
+  })
+}

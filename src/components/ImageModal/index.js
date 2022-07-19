@@ -1,5 +1,6 @@
 import './styles.scss';
 import { motion } from 'framer-motion';
+
 const Modal = ({ hideModal, toggleModal, children }) => {
 
   if (hideModal) return null;

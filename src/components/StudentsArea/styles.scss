@@ -1,0 +1,39 @@
+
+.wrap{
+    max-width: 100%;
+  .image-container{
+     text-align: center;
+   
+     
+    img{
+      margin: 0 auto;
+      max-width: 250px;
+      max-height: 250px;
+      box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
+      border: 3px solid white; z-index: 100;
+      margin-bottom: 2rem;
+      margin-top: 2rem;
+      cursor: pointer;
+    //  margin-left: 1rem;
+
+    
+    }
+  }
+
+}
+
+.updateProductImage{
+  max-width: 250px;
+  
+  margin: 0 auto;
+  .btn{
+    display: inline-block;
+    margin: 10px 12.5px;
+    max-width: 227px;
+  }
+  h2{
+      text-align: center;
+  }
+  
+ 
+}

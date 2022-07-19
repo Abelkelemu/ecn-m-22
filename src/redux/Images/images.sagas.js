@@ -5,6 +5,10 @@ import { handleAddImage, handleDeleteImage, handleFetchStoryImages } from "./ima
 import imagesTypes from "./images.types";
 import { setPercentage, fetchStoryImagesStart } from "./images.actions";
 import { buffers } from "redux-saga";
+
+
+
+
 export function* addImage ( {payload}) {
  
  

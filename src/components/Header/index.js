@@ -82,6 +82,8 @@ const Header = props => {
      );
 }
 
+
+// no use
 Header.defaultProps = {
     currentUser:null
 }

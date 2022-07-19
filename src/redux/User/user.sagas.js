@@ -1,8 +1,8 @@
 import { takeLatest, call, all, put } from "redux-saga/effects";
 import { auth, handleUserProfile, getCurrentUser } from "../../firebase/utils";
 import userTypes from "./user.types";
-import { signInSuccess, signOutUserSuccess, userError, resetPasswordSuccess, signInError } from "./user.actions";
-import { handleResetPasswordAPI, handleUpdateImage,handleUpdateText} from "./user.helpers";
+import { signInSuccess, signOutUserSuccess, userError, resetPasswordSuccess, signInError, setUser, fetchUserStart } from "./user.actions";
+import { handleResetPasswordAPI, handleUpdateImage,handleUpdateText, handleFetchUser} from "./user.helpers";
 
 export function* getSnapshotFromUserAuth(user) {
     try{
@@ -22,6 +22,7 @@ export function* getSnapshotFromUserAuth(user) {
 
 export function* emailSignIn({ payload: { email, password } }) {
     try {
+  
       const { user } = yield auth.signInWithEmailAndPassword(email, password);
       yield getSnapshotFromUserAuth(user);
   
@@ -29,7 +30,7 @@ export function* emailSignIn({ payload: { email, password } }) {
       yield put(
         signInError(['Email or password is incorrect'])
       )
-      // console.log(err);
+     // console.log(err);
     }
   }
   
@@ -93,12 +94,11 @@ export function* onResetPasswordStart(){
 }
 
 export function* updateImage ({payload}) {
+  const uID = payload.id;
   try{
     yield handleUpdateImage(payload)
     
-    // yield put(
-    //   fetchProductsStart()
-    // );
+    yield put(fetchUserStart(uID))
 
   }catch(err){
     //console.log(err)
@@ -111,9 +111,10 @@ export function* onUpdateImageStart (){
 
 
 export function* updateText ({payload}) {
+  const uID = payload.id;
   try{
    yield handleUpdateText(payload)
-    
+   yield put(fetchUserStart(uID))
     // yield put(
     //   fetchProductsStart()
     // );
@@ -170,6 +171,26 @@ export function* onUpdateTextStart (){
 // export function* onDeleteImageStart() {
 //   yield takeLatest(userTypes.DELETE_IMAGE_START, deleteImage);
 // }
+
+
+    export function* fetchUser ({payload}) {
+    try{
+      const user = yield handleFetchUser(payload);
+      
+      yield put (
+        
+        setUser(user)
+      )
+      
+    } catch(err){
+     // console.log(err)
+    }
+  
+  }
+  
+  export function* onFetchUserStart(){
+    yield takeLatest(userTypes.FETCH_USER_START,fetchUser)
+  }
   export default function* userSagas() {
       yield all([call(onEmailSignInStart),
         call(onCheckUserSession),
@@ -177,6 +198,7 @@ export function* onUpdateTextStart (){
         call(onResetPasswordStart),
         call(onUpdateImageStart),
         call(onUpdateTextStart),
+        call(onFetchUserStart)
         
       ])
   }

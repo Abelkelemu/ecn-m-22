@@ -1,14 +1,22 @@
 import React from 'react';
 import {  useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import './styles.scss'
+
+// actions
 import { fetchStoryImagesStart, addImageStart } from "../../redux/Images/images.actions";
+
+// components
+
 import Modal from "../Modal";
 import LoadMore from "../LoadMore";
 import Image from "./Image";
 import Button from '../forms/Button';
-import uploadImg from'./../../assets/uploadImg.PNG'
-import './styles.scss'
 import ProgressBar from '../ProgressBar';
+
+// assets
+import uploadImg from'./../../assets/uploadImg.PNG'
+
 const mapState = ({imagesData, user}) => ({
     sImages : imagesData.images,
     percentage: imagesData.percentage,
@@ -139,6 +147,7 @@ const StoryImages = () => {
                     ref ={inputRef} 
                     style={{display:"none"}}
                   />
+
                   <div className="wrap">
                     <div className="image-container">
                         {
@@ -146,12 +155,15 @@ const StoryImages = () => {
                         }
                     </div>
                   </div> 
+
                   <Button type='submit' className="btn">
                       Confirm
                   </Button>
+
                   <Button onClick={() => {setHideModal(true); resetImage()}}>
                       Close
                   </Button>
+                  
                 </form>
               </div>
             </Modal>
