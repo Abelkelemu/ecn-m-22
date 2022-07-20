@@ -1,47 +1,119 @@
+.StudentAreaWrap{
+  
+  margin: 1rem auto;
+  background-color: whitesmoke;
+  max-width: 70rem;
 
-.wrap{
-    max-width: 100%;
-  .image-container{
+  .yearbookImgWrap{
      text-align: center;
-   
+
+    h1{
+      padding-top: 2rem;
+    }
+
+    .icons{
+      i{
+        font-size:3rem ;
+      }
+      .deleteIcon{
+        cursor: pointer;
+        color: black;
+        display: inline;
+        padding-right: 2rem;
+        &:hover{
+          color: red;
+        }
+        
+      }
+      .editIcon{
+        cursor: pointer;
+        color: black;
+        display: inline;
+        &:hover{
+          color: blue;
+        }
+      }
+      
+    }
      
+      
+    
+    
+  
     img{
-      margin: 0 auto;
-      max-width: 250px;
-      max-height: 250px;
+      
+      
+      max-width: 300px;
+      max-height: 300px;
       box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
       border: 3px solid white; z-index: 100;
       margin-bottom: 2rem;
       margin-top: 2rem;
-      cursor: pointer;
-    //  margin-left: 1rem;
+    }
+    .updateYearbookImg{
 
+      max-width: 250px;
+      margin: 0 auto;
+
+      .btn{
+        display: inline-block;
+        margin: 10px 12.5px;
+        max-width: 227px;
+      }
+
+      h2{
+        text-align: center;
+      }
+
+      .wrap{
+
+        max-width: 100%;
+      .image-container{
+
+         text-align: center;
+       
+         
+        img{
+          margin: 0 auto;
+          max-width: 250px;
+          max-height: 250px;
+          box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
+          border: 3px solid white; z-index: 100;
+          margin-bottom: 2rem;
+          margin-top: 2rem;
+          cursor: pointer;
+        //  margin-left: 1rem;
     
+        
+        }
+      }
+    
+    }
+    
+    }
+  }
+  ul{
+    margin: 1rem;
+    padding: 0;
+
+    li{
+      list-style-type: none;
+      padding: 0.5rem;
+
+    }
+  }
+
+  .iconTextEdit{
+   font-size: 3rem;
+   text-align: center;
+   padding-left: 1rem;
+   
+    &:hover{
+      color: blue;
     }
   }
 
 }
 
-.updateProductImage{
-  max-width: 250px;
-  
-  margin: 0 auto;
-  .btn{
-    display: inline-block;
-    margin: 10px 12.5px;
-    max-width: 227px;
-  }
-  h2{
-      text-align: center;
-  }
-  
- 
-}
 
-.accountWrap{
-  text-align: center;
-  img{
-    max-width: 300px;
-    
-  }
-}
+
