@@ -35,6 +35,7 @@ const StudentsArea = props => {
 
     const [hideModal, setHideModal] = useState(true);
     const [hideModal2, setHideModal2] = useState(true);
+    const [hideModal3, setHideModal3] = useState(true);
 
     const [image, setImage] = useState(null);
     const [imagePreview, setimagePreview] = useState();
@@ -44,6 +45,17 @@ const StudentsArea = props => {
     const [fN,setFN] = useState(firstName);
     const [lN,setLN] = useState(lastName);
     const[ybQ, setYbQ] = useState(yearbookQuote);
+    
+    const[eA, setEA] = useState(emailAddress);
+    const[pN, setPN] = useState(phoneNumber);
+    const[igU, setIgU] = useState(instagramUsername);
+    const[fbU, setFbU] = useState(facebookUsername);
+
+    const[fPic, setFPic] = useState(true);
+    const[sPic, setSPic] = useState(true);
+
+
+    
    
    
     useEffect(() => {
@@ -71,9 +83,18 @@ const StudentsArea = props => {
       setLN(lastName);
       setYbQ(yearbookQuote);
     }
+
+    const toggleModal3 = () => {
+      setHideModal3(!hideModal3)
+      setEA(emailAddress)
+      setPN(phoneNumber)
+      setIgU(instagramUsername)
+      setFbU(facebookUsername)
+    }
     
     const resetForm = () =>{
       setHideModal(true);
+      setHideModal3(true)
       setimagePreview()
       setImage(null)
       
@@ -87,10 +108,19 @@ const StudentsArea = props => {
     const configModal2 = {
       hideModal: hideModal2,
       toggleModal : toggleModal2,
-  };
+    };
+
+    
+    const configModal3 = {
+      hideModal: hideModal3,
+      toggleModal : toggleModal3,
+    };
+
        
     const handleSubmit = e => {
         e.preventDefault();
+        setFPic(true);
+        setSPic(false);
         dispatch(
           updateImageStart({
             id ,
@@ -137,7 +167,35 @@ const StudentsArea = props => {
         })  
       )
       setHideModal2(true);
+    }
+
+    
+       
+    const handleSubmit4 = e => {
+      e.preventDefault();
+      setFPic(false);
+      setSPic(true);
+      dispatch(
+        updateImageStart({
+          id ,
+          image,
+          field :'yellowpageimgThumbnail',
+          storageFolder : 'yellow-page-images'
+        })  
+      )
+      resetForm();
   }
+
+   const handleSubmit5 = e => {
+        e.preventDefault();
+        dispatch(
+          updateTextStart({
+            id ,
+            field :'yellowpageimgThumbnail',
+            newText: ''
+          })  
+        )
+    }
 
     const types = ['image/png', 'image/jpeg', 'image/jpg']; 
     
@@ -157,19 +215,19 @@ const StudentsArea = props => {
     return (
  
         <div className='StudentAreaWrap'>
-
+          <h1>Yearbook</h1>
           <div className="yearbookImgWrap">
 
-            <h1>Yearbook</h1>  
-            {userPercentage>0 && <ProgressBar percentage = {userPercentage}/>}
+             
+            {fPic && userPercentage>0 && <ProgressBar percentage = {userPercentage}/>}
             {yearbookimgOneThumbnail? <img src={yearbookimgOneThumbnail} alt="" /> : <img src ={uploadImg} onClick={() => toggleModal()} />}
            
             <div className="icons">
               <div className="deleteIcon">
-                {userPercentage==0 && <i title="Delete Picture" className = "deleteIcon"class="fa fa-trash-alt" aria-hidden="true" onClick={handleSubmit2}></i>}
+                <i title="Delete Picture" className = "deleteIcon"class="fa fa-trash-alt" aria-hidden="true" onClick={handleSubmit2}></i>
               </div>
               <div className="editIcon">
-                {userPercentage == 0 && <i title = "Edit Picture" class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal()}></i>}
+                <i title = "Edit Picture" class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal()}></i>
               </div>
             </div>
 
@@ -236,7 +294,7 @@ const StudentsArea = props => {
               </ul>
               
               <div className="iconTextEdit">
-                   <i title="Edit First Name "class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal2()}></i>
+                   <i title="Edit Texts "class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal2()}></i>
               </div>
               <Modal {...configModal2}>
                   <form onSubmit={handleSubmit3}>
@@ -273,9 +331,160 @@ const StudentsArea = props => {
           </div>
            
             <h1>Yellow Page</h1>
+            <div className="yearbookImgWrap">
+
+           
+            {sPic && userPercentage>0 && <ProgressBar percentage = {userPercentage}/>}
+            {yellowpageimgThumbnail? <img src={yellowpageimgThumbnail} alt="" /> : <img src ={uploadImg} onClick={() => toggleModal3()} />}
+           
+            <div className="icons">
+              <div className="deleteIcon">
+                <i title="Delete Picture" className = "deleteIcon"class="fa fa-trash-alt" aria-hidden="true" onClick={handleSubmit5}></i>
+              </div>
+              <div className="editIcon">
+                <i title = "Edit Picture" class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal3()}></i>
+              </div>
+            </div>
+
+            
+            <Modal {...configModal3}>
+
+              <div className="updateYearbookImg">
+              
+                <form onSubmit = {handleSubmit4}>                
+              
+                  <label htmlFor="yellowPageImg"><h2>Yellow Page Photo</h2></label>
+              
+                    <Button onClick={triggerFileSelectPopup}>
+                     Choose an image
+                    </Button>
+              
+                    <input 
+                      type="file" 
+                      name="yellowPageImg"
+                      className="yellowPageImgInput" 
+                      onChange={ImgHandler} 
+                      ref ={inputRef} 
+                      style={{display:"none"}}
+                    />    
+                    
+                    <div className="wrap">
+                    
+                      <div className="image-container">
+                        {
+                          image  ? <img   src={imagePreview} ></img> : <img onClick={triggerFileSelectPopup} src={uploadImg}/> 
+                        }
+                      </div>
+
+                    </div> 
+
+                    <Button type='submit' className="btn">
+                      Finish
+                    </Button>
+
+                    <Button onClick={() => {setHideModal3(true); resetImage()}}>
+                      Close
+                    </Button>
+
+                </form>
+              </div>
+            </Modal>
+            
+          </div>
+
+          <div className="yearbookInfo">
+              <ul>
+              <li>
+                  First Name: {firstName && firstName}
+                  
+                </li>
+                <li>
+                  Last Name: {lastName && lastName}
+                  
+                </li>
+                <li>
+                  Email Address: {emailAddress && emailAddress}
+                  
+                </li>
+                <li>
+                  Phone Number: {phoneNumber && phoneNumber}
+                  
+                </li>
+                <li>
+                  Instagram Username: {instagramUsername && instagramUsername}
+                </li>
+
+                <li>
+                  Facebook Username: {facebookUsername && facebookUsername}
+                </li>
+              </ul>
+              
+              <div className="iconTextEdit">
+                   <i title="Edit Texts "class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal2()}></i>
+              </div>
+              <br />
+              <Modal {...configModal2}>
+                  <form onSubmit={handleSubmit3}>
+                    First Name
+                    <FormInput
+                      type= "text"
+                      name="fN"
+                      value={fN}
+                      placeholder={fN}
+                      handleChange = {e => setFN(e.target.value)}
+                      />
+                      Last Name
+                      <FormInput
+                      type= "text"
+                      name="lN"
+                      value={lN}
+                      placeholder={lN}
+                      handleChange = {e => setLN(e.target.value)}
+                      />
+                    Email Address
+                    <FormInput
+                      type= "email"
+                      name="fN"
+                      value={fN}
+                      placeholder={fN}
+                      handleChange = {e => setFN(e.target.value)}
+                      />
+                      Phone Number
+                      <FormInput
+                      type= "text"
+                      name="lN"
+                      value={lN}
+                      placeholder={lN}
+                      handleChange = {e => setLN(e.target.value)}
+                      />
+                      Instagram Username
+                      <FormInput
+                      type= "text"
+                      name="ybQ"
+                      value={ybQ}
+                      placeholder={ybQ}
+                      handleChange = {e => setYbQ(e.target.value)}
+                      />
+                      Facebook Username
+                      <FormInput
+                      type= "text"
+                      name="ybQ"
+                      value={ybQ}
+                      placeholder={ybQ}
+                      handleChange = {e => setYbQ(e.target.value)}
+                      />
+                      <Button type= "submit">
+                        Submit
+                      </Button>
+                  </form>
+              </Modal>
+
+          </div>
 
             
         </div>
+
+
 
   
     )
