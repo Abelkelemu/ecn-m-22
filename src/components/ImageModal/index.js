@@ -23,14 +23,3 @@ const Modal = ({ hideModal, toggleModal, children }) => {
 
 export default Modal;
 
-// [
-//     <motion.div className="modalOverlay" onClick={() => toggleModal()} 
-//         initial={{opacity:0}}
-//         animate= {{opacity:1}}
-//     />,
-//     <div className="backdrop">
-//         <div className="backdrop-modal">
-//           {children}
-//         </div>
-//     </div>
-//   ];

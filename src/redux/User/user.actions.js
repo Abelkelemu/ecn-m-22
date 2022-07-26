@@ -87,12 +87,3 @@ export const setAllUsers = users => ({
   type: userTypes.SET_ALL_USERS,
   payload: users
 });
-// export const addImageStart = imageData => ({
-//   type: userTypes.ADD_NEW_IMAGE_START,
-//   payload: imageData
-// });
-
-// export const deleteImageStart = imageID => ({
-//   type: userTypes.DELETE_IMAGE_START,
-//   payload: imageID
-// });

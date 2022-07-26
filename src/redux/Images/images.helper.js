@@ -47,52 +47,6 @@ export const handleAddImage = payload => {
 })
 }
 
-// export const handleAddImage = payload => {
-   
-    
-//     const image = payload.image
-//     const studentUID = payload.studentUID
-//     const createdDate = payload.createdDate
-//     const imgname = uuidv4();
-    
-  
-//     return new Promise((resolve, reject) => {
-      
-      
-//       const uploadTask = storage.ref(`story-images/${imgname}-${image.name}`).put(image);
-          
-//       uploadTask.on('state_changed' , snapshot => {
-  
-//         const  percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        
-
-      
-        
-      
-  
-//     }, err => err
-//     ,() => {
-      
-//       storage.ref(`story-images/${imgname}-${image.name}`).getDownloadURL().then(downloadURL => {
-//       firestore
-//         .collection('storyImages')
-//         .doc()
-//         .set({
-//           storyImageThumbnail : downloadURL,
-//           createdDate : createdDate,
-//           studentUID: studentUID
-//         })
-//         .then(()=>{
-//           resolve();
-//         })
-//         .catch(err=>{
-//           reject(err);
-//         })
-//     })
-//   })  
-//         });    
-//   }
-  
   export const handleDeleteImage = (documentID )=> {
     
     return new Promise((resolve, reject) => {

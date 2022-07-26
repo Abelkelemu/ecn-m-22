@@ -38,7 +38,6 @@ const FrontPage = props => {
         )
     },[])
 
-    
 
     const handleLoadMore = () => {
         

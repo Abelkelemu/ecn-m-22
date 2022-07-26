@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input';
 import './styles.scss'
 
 //assets
@@ -36,6 +38,7 @@ const StudentsArea = props => {
     const [hideModal, setHideModal] = useState(true);
     const [hideModal2, setHideModal2] = useState(true);
     const [hideModal3, setHideModal3] = useState(true);
+    const [hideModal4, setHideModal4] = useState(true);
 
     const [image, setImage] = useState(null);
     const [imagePreview, setimagePreview] = useState();
@@ -86,15 +89,24 @@ const StudentsArea = props => {
 
     const toggleModal3 = () => {
       setHideModal3(!hideModal3)
+      setFN(firstName);
+      setLN(lastName);
       setEA(emailAddress)
       setPN(phoneNumber)
       setIgU(instagramUsername)
       setFbU(facebookUsername)
     }
     
+    const toggleModal4 = () => {
+      setHideModal4(!hideModal4)
+      setimagePreview()
+      setImage(null)
+    };
+      
     const resetForm = () =>{
       setHideModal(true);
-      setHideModal3(true)
+      setHideModal3(true);
+      setHideModal4(true)
       setimagePreview()
       setImage(null)
       
@@ -116,7 +128,11 @@ const StudentsArea = props => {
       toggleModal : toggleModal3,
     };
 
-       
+    const configModal4 = {
+      hideModal: hideModal4,
+      toggleModal : toggleModal4,
+    };
+   
     const handleSubmit = e => {
         e.preventDefault();
         setFPic(true);
@@ -195,6 +211,52 @@ const StudentsArea = props => {
             newText: ''
           })  
         )
+    }
+    const handleSubmit6 = e => {
+      e.preventDefault();
+      dispatch(
+        updateTextStart({
+          id ,
+          field :'firstName',
+          newText: fN
+        })  
+      )
+      dispatch(
+        updateTextStart({
+          id ,
+          field :'lastName',
+          newText: lN
+        })  
+      )
+      dispatch(
+        updateTextStart({
+          id ,
+          field :'emailAddress',
+          newText: eA
+        })  
+      )
+      dispatch(
+        updateTextStart({
+          id ,
+          field :'phoneNumber',
+          newText: pN
+        })  
+      )
+      dispatch(
+        updateTextStart({
+          id ,
+          field :'instagramUsername',
+          newText: igU
+        })  
+      )
+      dispatch(
+        updateTextStart({
+          id ,
+          field :'facebookUsername',
+          newText: fbU
+        })  
+      )
+      setHideModal3(true);
     }
 
     const types = ['image/png', 'image/jpeg', 'image/jpg']; 
@@ -335,19 +397,19 @@ const StudentsArea = props => {
 
            
             {sPic && userPercentage>0 && <ProgressBar percentage = {userPercentage}/>}
-            {yellowpageimgThumbnail? <img src={yellowpageimgThumbnail} alt="" /> : <img src ={uploadImg} onClick={() => toggleModal3()} />}
+            {yellowpageimgThumbnail? <img src={yellowpageimgThumbnail} alt="" /> : <img src ={uploadImg} onClick={() => toggleModal4()} />}
            
             <div className="icons">
               <div className="deleteIcon">
                 <i title="Delete Picture" className = "deleteIcon"class="fa fa-trash-alt" aria-hidden="true" onClick={handleSubmit5}></i>
               </div>
               <div className="editIcon">
-                <i title = "Edit Picture" class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal3()}></i>
+                <i title = "Edit Picture" class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal4()}></i>
               </div>
             </div>
 
             
-            <Modal {...configModal3}>
+            <Modal {...configModal4}>
 
               <div className="updateYearbookImg">
               
@@ -382,7 +444,7 @@ const StudentsArea = props => {
                       Finish
                     </Button>
 
-                    <Button onClick={() => {setHideModal3(true); resetImage()}}>
+                    <Button onClick={() => {setHideModal4(true); resetImage()}}>
                       Close
                     </Button>
 
@@ -420,11 +482,11 @@ const StudentsArea = props => {
               </ul>
               
               <div className="iconTextEdit">
-                   <i title="Edit Texts "class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal2()}></i>
+                   <i title="Edit Texts "class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal3()}></i>
               </div>
               <br />
-              <Modal {...configModal2}>
-                  <form onSubmit={handleSubmit3}>
+              <Modal {...configModal3}>
+                  <form onSubmit={handleSubmit6}>
                     First Name
                     <FormInput
                       type= "text"
@@ -445,33 +507,33 @@ const StudentsArea = props => {
                     <FormInput
                       type= "email"
                       name="fN"
-                      value={fN}
-                      placeholder={fN}
-                      handleChange = {e => setFN(e.target.value)}
+                      value={eA}
+                      placeholder={eA}
+                      handleChange = {e => setEA(e.target.value)}
                       />
                       Phone Number
-                      <FormInput
-                      type= "text"
-                      name="lN"
-                      value={lN}
-                      placeholder={lN}
-                      handleChange = {e => setLN(e.target.value)}
-                      />
+              
+                      <PhoneInput
+                      className='phoneInput'
+                        placeholder = {phoneNumber}
+                        value={pN}
+                        onChange={setPN}/>
+                      
                       Instagram Username
                       <FormInput
                       type= "text"
                       name="ybQ"
-                      value={ybQ}
-                      placeholder={ybQ}
-                      handleChange = {e => setYbQ(e.target.value)}
+                      value={igU}
+                      placeholder={igU}
+                      handleChange = {e => setIgU(e.target.value)}
                       />
                       Facebook Username
                       <FormInput
                       type= "text"
                       name="ybQ"
-                      value={ybQ}
-                      placeholder={ybQ}
-                      handleChange = {e => setYbQ(e.target.value)}
+                      value={fbU}
+                      placeholder={fbU}
+                      handleChange = {e => setFbU(e.target.value)}
                       />
                       <Button type= "submit">
                         Submit

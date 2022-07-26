@@ -48,7 +48,7 @@ const Header = props => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/">
+                            <Link to="/yellowPages">
                                 Yellowpage
                             </Link>
                         </li>

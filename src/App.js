@@ -19,6 +19,7 @@ import Login from './pages/Login';
 import Recovery from './pages/Recovery';
 import Student from './pages/Student';
 import StoryPage from './pages/StoryPage';
+import YellowPages from './pages/YellowPages';
 
 
 
@@ -65,6 +66,12 @@ const App = props => {
             <Route path="/storypage" render = {() => (
                 <MainLayout>
                 <StoryPage/>
+               </MainLayout>
+            )} />  
+
+            <Route path="/yellowpages" render = {() => (
+                <MainLayout>
+                <YellowPages/>
                </MainLayout>
             )} />  
             
