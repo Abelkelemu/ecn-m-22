@@ -1,13 +1,92 @@
+@keyframes anim1{
+    0% {color:white;}
+    25%{color: red;}
+    50% {color:blue;}
+    75%{color: pink;}
+    100% {color:orange;}
+}
+
+@keyframes anim2 {
+    0% {transform: rotate(-3deg);color:white;}
+    25%{color: red;}
+    50% {color:blue;}
+    75%{color: pink;}
+    100% {transform: rotate(3deg);color:orange;}
+   
+}
+
+.fullDesign{
+    padding: 0;
+    margin: 0;
+    background-image:linear-gradient(to bottom right,white, black,black,white);
+   // background-image:url("")
+   position: relative;
+   
+   .hat{
+    position: absolute;
+    left: 0;
+    right: 0;
+    img{
+        width: 400px;
+        height: 400px;
+    }
+    }
+    .hat2{
+        position: absolute;
+        right:10%;
+        top: 2%;
+        img{
+            width: 200px;
+            height: 200px;
+        }
+    }
+
+   
+}
 
 .yearbookPreview{
     display: block;
     width: 100%;
-    padding: 0 10rem;
-    margin: 2rem 0;
+    padding: 0 17rem;
+   // margin: 2rem 0;
+    
+
+    h1{
+        margin: 0;
+        padding-top: 6rem;
+        padding-bottom: 5rem;
+        text-align: center;
+       // margin-top: 4rem ;
+        text-transform: uppercase;
+        color: white;
+        font-size: 10rem;
+        animation-name: anim1;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+    h2{
+        margin: 0;
+        padding-top: 0;
+        padding-bottom: 4rem;
+        text-align: center;
+       // margin-top: 4rem ;
+        text-transform: uppercase;
+        color: white;
+        font-size: 4rem;
+        animation-name: anim2;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+   
     .yearbookResults{
         display: flex;
         flex-wrap: wrap;
         margin: 3rem -10px 0;
+     
+
+      
     }
 }
 
@@ -15,6 +94,9 @@
     width: 33.333333333333333%;
     margin: 0 auto 2rem;
     padding: 0 10px;
+    
+
+  
 
     .yearbookThumb {
         display: block;
@@ -22,11 +104,12 @@
     
         img {
           display: block;
-          width: 90%;
+          width: 85%;
           height: 350px;
           margin: 0;
-          box-shadow: 1px 4px 5px rgba(0,0,0,0.5);
-         // border: 1px solid white; z-index: 100;
+          box-shadow: 6px 1px 1px #FFA500;
+          border: 4px solid #FFA500; z-index: 100;
+          transform: rotate(-2deg);
         }
       }
 
@@ -48,15 +131,17 @@
             list-style-type: none;
             text-align: left;
             margin: 0 0 .5rem;
+            color: white;
     
-             a {
-                  color: black;
-            }
+            //  a {
+            //       color: black;
+            // }
     
                 .name {
                     font-size: 2.5rem;
                     line-height: 1.2;
                     font-weight: bold;
+                    
                 }
 
                 .emailAddress{

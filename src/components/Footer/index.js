@@ -11,7 +11,10 @@ const Footer = props => {
         <div className="socialMedia">
               <a href="https://www.instagram.com/abel_kd_/" >Contact me</a> 
               <a href="https://www.instagram.com/abel_kd_/">
-              <i class="fab fa-instagram"></i>
+              <span className="instaFooterIcon">
+                <i class="fab fa-instagram"></i>
+              </span>
+              
               
               </a>          
         </div>

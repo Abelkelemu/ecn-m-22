@@ -13,6 +13,8 @@ import YearbookDesign from './YearbookDesign';
 
 
 // assets
+import hat from '../../assets/hat.png'
+import hat2 from '../../assets/hat2.png'
 
 
 const mapState = ({user}) => ({
@@ -44,34 +46,42 @@ const StudentsYearbook = () => {
     
     return ( 
 
+        <div className="fullDesign">
+            <div className="hat"><img src={hat} alt="" /></div>
+            <div className="hat2"><img src={hat2} alt="" /></div>
+           
         <div className='yearbookPreview'>
 
-            <h1>Yearbook</h1>
-            <div className="yearbookResults">
-  
-          
 
-            {data.map((yearbookData,pos)=>{
-                const {firstName,
-                     lastName,
-                     yearbookimgOneThumbnail,
-                     yearbookQuote
-                    } = yearbookData;
-               // if(!storyImageThumbnail) return null;
-                const configImage = {
-                    firstName,
-                    lastName,
-                    yearbookimgOneThumbnail,
-                    yearbookQuote
-                } 
-                return(
-                    <YearbookDesign {...configImage}/>
-                );
-            })}
-          </div>
-        
+<h1>Class of 2022 </h1>
+<h2>congratulations!</h2>
+<div className="yearbookResults">
 
+
+
+{data.map((yearbookData,pos)=>{
+    const {firstName,
+         lastName,
+         yearbookimgOneThumbnail,
+         yearbookQuote
+        } = yearbookData;
+   // if(!storyImageThumbnail) return null;
+    const configImage = {
+        firstName,
+        lastName,
+        yearbookimgOneThumbnail,
+        yearbookQuote
+    } 
+    return(
+        <YearbookDesign {...configImage}/>
+    );
+})}
+</div>
+
+
+</div>
         </div>
+
        
     );
 }

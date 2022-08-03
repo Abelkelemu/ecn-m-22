@@ -1,5 +1,6 @@
 .footer {
-    background-color: #FFA500;
+  background-image:linear-gradient(to bottom right,black, #FFA500, #FFA500,black);
+   // background-color: #FFA500;
     margin-top: 0;
       .footerWrap {
         max-width: 1450px;
@@ -7,7 +8,8 @@
         .copyright{
           text-align: center;
           padding-bottom: 1rem;
-          color: black;  
+          color: black; 
+          font-size: 2.5rem; 
         }
         
         .socialMedia{
@@ -15,11 +17,17 @@
               
               a{
                   color: white;
-                  font-size: 2rem;
+                  font-size: 3rem;
                   padding: 5px;
                   &:hover{
                     color:black;
                   }
+              }
+              .instaFooterIcon{
+                color: #bc2a8d;
+                &:hover{
+                  color: #8a3ab9;
+                }
               }
             }
         }

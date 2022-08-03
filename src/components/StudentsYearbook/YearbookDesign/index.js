@@ -14,7 +14,10 @@ const YearbookDesign = (props) => {
 
     return ( 
       <div className="studentsYearbookPreview">
+       
+        
         <div className="yearbookThumb">
+          
           <img src={yearbookimgOneThumbnail} alt='' /> 
         </div>   
 
