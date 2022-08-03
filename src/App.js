@@ -20,6 +20,7 @@ import Recovery from './pages/Recovery';
 import Student from './pages/Student';
 import StoryPage from './pages/StoryPage';
 import YellowPages from './pages/YellowPages';
+import Yearbook from './pages/Yearbook';
 
 
 
@@ -75,6 +76,12 @@ const App = props => {
                </MainLayout>
             )} />  
             
+            
+            <Route path="/yearbook" render = {() => (
+                <MainLayout>
+                <Yearbook/>
+               </MainLayout>
+            )} />
 
           </Switch>
       </div>

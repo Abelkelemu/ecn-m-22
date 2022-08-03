@@ -6,7 +6,7 @@ import imagesTypes from "./images.types";
 import { setPercentage, fetchStoryImagesStart } from "./images.actions";
 import { buffers } from "redux-saga";
 
-
+import { fetchUserStart } from "../User/user.actions";
 
 
 export function* addImage ( {payload}) {
@@ -14,6 +14,7 @@ export function* addImage ( {payload}) {
  
   
     try{
+      const studentUID =auth.currentUser.uid;
       const timestamp = new Date();
   
       const channel = yield handleAddImage({
@@ -30,6 +31,7 @@ export function* addImage ( {payload}) {
         }
         if(downloadURL){
           yield put(fetchStoryImagesStart())
+          yield put((fetchUserStart(studentUID)))
           yield put (setPercentage(0))
           return;
         }

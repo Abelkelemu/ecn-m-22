@@ -1,4 +1,4 @@
-import { auth } from "../../firebase/utils";
+import { auth, incrementByOne } from "../../firebase/utils";
 import { firestore, storage } from "../../firebase/utils";
 import { v4 as uuidv4 } from "uuid";
 import { setPercentage } from "./images.actions";
@@ -11,6 +11,7 @@ export const handleAddImage = payload => {
   const image = payload.image
   const studentUID = payload.studentUID
   const createdDate = payload.createdDate
+  
   const imgname = uuidv4();
 
   return eventChannel(emitter => {
@@ -36,6 +37,14 @@ export const handleAddImage = payload => {
           studentUID: studentUID,
           imageName: `${imgname} + ${image.name}`
         })
+      .then (()=>{
+        firestore
+        .collection('students')
+        .doc(studentUID)
+        .update({
+          count: incrementByOne
+        })
+      })
       .then(()=> {
         emitter({downloadURL})
       })

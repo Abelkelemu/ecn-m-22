@@ -10,6 +10,7 @@ firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 export const storage = firebase.storage();
+export const incrementByOne = firebase.firestore.FieldValue.increment(1);
 
 export const handleUserProfile = async ({userAuth, additionalData}) => {
     if(!userAuth) return;

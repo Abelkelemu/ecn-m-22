@@ -3,13 +3,14 @@ import {  useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllUsersStart } from '../../redux/User/user.actions';
 import './styles.scss'
+import YearbookDesign from './YearbookDesign';
 
 // actions
 
 
 // components
 
-import Yellowpage from './YellowPage';
+
 
 // assets
 
@@ -20,7 +21,7 @@ const mapState = ({user}) => ({
 
 
 
-const YellowPagesDisplay = () => {
+const StudentsYearbook = () => {
 
     const dispatch = useDispatch();
     const {allStudents} = useSelector(mapState)
@@ -43,34 +44,28 @@ const YellowPagesDisplay = () => {
     
     return ( 
 
-        <div className='yellowPagePreview'>
+        <div className='yearbookPreview'>
 
-            <h1>Yellow Page</h1>
-            <div className="yellowPagePreviewResults">
+            <h1>Yearbook</h1>
+            <div className="yearbookResults">
   
           
 
-            {data.map((yellowPageData,pos)=>{
+            {data.map((yearbookData,pos)=>{
                 const {firstName,
                      lastName,
-                     yellowpageimgThumbnail,
-                     emailAddress,
-                     phoneNumber,
-                     instagramUsername,
-                     facebookUsername
-                    } = yellowPageData;
+                     yearbookimgOneThumbnail,
+                     yearbookQuote
+                    } = yearbookData;
                // if(!storyImageThumbnail) return null;
                 const configImage = {
                     firstName,
                     lastName,
-                    yellowpageimgThumbnail,
-                    emailAddress,
-                    phoneNumber,
-                    instagramUsername,
-                    facebookUsername
+                    yearbookimgOneThumbnail,
+                    yearbookQuote
                 } 
                 return(
-                    <Yellowpage {...configImage}/>
+                    <YearbookDesign {...configImage}/>
                 );
             })}
           </div>
@@ -81,4 +76,4 @@ const YellowPagesDisplay = () => {
     );
 }
  
-export default YellowPagesDisplay;
+export default StudentsYearbook;

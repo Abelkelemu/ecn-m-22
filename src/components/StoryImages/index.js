@@ -20,22 +20,25 @@ import uploadImg from'./../../assets/uploadImg.PNG'
 const mapState = ({imagesData, user}) => ({
     sImages : imagesData.images,
     percentage: imagesData.percentage,
-    currentUser: user.currentUser
+    currentUser: user.currentUser,
+    student: user.student
 })
 
 
 
 const StoryImages = () => {
 
-    const {sImages, currentUser, percentage} = useSelector(mapState)
+    const {sImages, currentUser, percentage,student} = useSelector(mapState)
+    
     const dispatch = useDispatch();
     const {data, queryDoc ,isLastPage} = sImages;
-
+    
     const [hideModal, setHideModal] = useState(true);
     const inputRef = React.useRef();
     const [image, setImage] = useState(null);
     const [imagePreview, setimagePreview] = useState();
     const [error,setError] = useState('');
+    const [full,setFull] = useState(false)
     
     const resetImage = () => setImage(null);
     
@@ -118,13 +121,16 @@ const StoryImages = () => {
             </div>
         )
     }
+   
+     
+    
     return ( 
 
         <div className="preview">
-        
+      
           <h1>Story Book </h1>
           {percentage>0 && <ProgressBar percentage = {percentage}/>}
-          {percentage===0 && currentUser && <span onClick={() => toggleModal()}>
+          {percentage===0 && currentUser && currentUser.count<5 && student.count!==5   && <span onClick={() => toggleModal()}>
               +
           </span>}
      

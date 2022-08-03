@@ -38,7 +38,7 @@ const Header = props => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/">
+                            <Link to="/yearbook">
                                 Yearbook
                             </Link>
                         </li>
