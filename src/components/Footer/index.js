@@ -19,12 +19,16 @@ const Footer = props => {
               </a>          
         </div>
         
-        <Link to="/">
+        
           <div className="copyright" >
+            <a href="https://www.instagram.com/abel_kd_/">
             <p>Designed by Abel K Dessalegne</p> 
+            </a>
+            <Link to="/">
             © 2022 ECN-M-22
+            </Link>
           </div>
-        </Link>
+       
     
         
       </div>

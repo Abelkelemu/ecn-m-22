@@ -35,10 +35,19 @@ const userReducer = (state=INITIAL_STATE, action) => {
                 resetPasswordSuccess:action.payload
             }
         case userTypes.RESET_USER_STATE:
-        case userTypes.SIGN_OUT_USER_SUCCESS:
             return{
                 ...state,
                 ...INITIAL_STATE
+            }
+        case userTypes.SIGN_OUT_USER_SUCCESS:
+            return{
+                ...state,
+                currentUser: null,
+                resetPasswordSuccess: false,
+                userErr: [],
+                signInErr: [],
+                student: [],
+                userPercentage: 0
             }
 
 

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './styles.scss';
-import Logo from './../../assets/logo.png'
+import Logo from './../../assets/logo2.png'
 
 //actions
 import { signOutUserStart } from '../../redux/User/user.actions';

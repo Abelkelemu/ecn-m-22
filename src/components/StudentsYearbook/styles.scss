@@ -24,12 +24,17 @@
    
    .hat{
     position: absolute;
-    left: 0;
-    right: 0;
+    left: 10px;
+    top: 0;
     img{
         width: 400px;
         height: 400px;
+        
     }
+    animation-name: anim2;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
     }
     .hat2{
         position: absolute;
@@ -39,6 +44,10 @@
             width: 200px;
             height: 200px;
         }
+        animation-name: anim2;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
     }
 
    

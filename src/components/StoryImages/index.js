@@ -90,7 +90,7 @@ const StoryImages = () => {
 
         dispatch(
             fetchStoryImagesStart({
-              pageSize:16
+              pageSize:12
             })
         )
     },[])
@@ -113,7 +113,7 @@ const StoryImages = () => {
     }
 
 
-    if(!Array.isArray(data) && !currentUser) return null;
+    if(!Array.isArray(data) ) return null;
     if(data.length<1 && !currentUser){
         return (
             <div className="img-grid">
@@ -128,67 +128,70 @@ const StoryImages = () => {
 
         <div className="preview">
       
-          <h1>Story Book </h1>
+          <h1>Our Memories Are Countless </h1>
           {percentage>0 && <ProgressBar percentage = {percentage}/>}
           {percentage===0 && currentUser && currentUser.count<5 && student.count!==5   && <span onClick={() => toggleModal()}>
               +
           </span>}
-     
+
+          <div className="previewWrap">
           <div className="img-grid">
   
-            <Modal {...configModal}>
-              <div className="addStoryImage">
-                <form onSubmit = {handleSubmit}>
-                  <label htmlFor="yearbook-small-image"><h2>Image Preview</h2></label>
+  <Modal {...configModal}>
+    <div className="addStoryImage">
+      <form onSubmit = {handleSubmit}>
+        <label htmlFor="yearbook-small-image"><h2>Image Preview</h2></label>
 
-                  <Button onClick={triggerFileSelectPopup}>
-                    Choose an image
-                  </Button>
-     
-                  <input 
-                    type="file" 
-                    name="yearbook-small-image"
-                    className="imgoneinput" 
-                    onChange={ImgHandler} 
-                    ref ={inputRef} 
-                    style={{display:"none"}}
-                  />
+        <Button onClick={triggerFileSelectPopup}>
+          Choose an image
+        </Button>
 
-                  <div className="wrap">
-                    <div className="image-container">
-                        {
-                          image  ? <img   src={imagePreview} ></img> : <img onClick={triggerFileSelectPopup} src={uploadImg}/> 
-                        }
-                    </div>
-                  </div> 
+        <input 
+          type="file" 
+          name="yearbook-small-image"
+          className="imgoneinput" 
+          onChange={ImgHandler} 
+          ref ={inputRef} 
+          style={{display:"none"}}
+        />
 
-                  <Button type='submit' className="btn">
-                      Confirm
-                  </Button>
-
-                  <Button onClick={() => {setHideModal(true); resetImage()}}>
-                      Close
-                  </Button>
-                  
-                </form>
-              </div>
-            </Modal>
-
-            {data.map((sImage,pos)=>{
-                const {storyImageThumbnail} = sImage;
-                if(!storyImageThumbnail) return null;
-                const configImage = {
-                    storyImageThumbnail
-                } 
-                return(
-                    <Image {...configImage}/>
-                );
-            })}
+        <div className="wrap">
+          <div className="image-container">
+              {
+                image  ? <img   src={imagePreview} ></img> : <img onClick={triggerFileSelectPopup} src={uploadImg}/> 
+              }
           </div>
+        </div> 
+
+        <Button type='submit' className="btn">
+            Confirm
+        </Button>
+
+        <Button onClick={() => {setHideModal(true); resetImage()}}>
+            Close
+        </Button>
         
-        <div className="loadMoreBtn">
-        {!isLastPage && (<LoadMore {...configLoadMore}/>)}
-        </div>
+      </form>
+    </div>
+  </Modal>
+
+  {data.map((sImage,pos)=>{
+      const {storyImageThumbnail} = sImage;
+      if(!storyImageThumbnail) return null;
+      const configImage = {
+          storyImageThumbnail
+      } 
+      return(
+          <Image {...configImage}/>
+      );
+  })}
+</div>
+
+<div className="loadMoreBtn">
+{!isLastPage && (<LoadMore {...configLoadMore}/>)}
+</div>
+          </div>
+          
       </div>
     );
 }
