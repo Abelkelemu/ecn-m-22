@@ -1,20 +1,16 @@
 .authWrapper{
     display: block;
-    width: 100%;
-  min-width: 220px;
+    min-width: 22.0rem;
     max-width: 40.0rem;
-  margin: 10rem auto 10rem;
-    border:1px solid black;
-
-
+    margin: 10rem auto ;
+    border:2px solid #FFA500;
+    background-image:linear-gradient(to bottom right,white, #FFA500,white, #FFA500,white);
     .wrap{
         padding:  10px;
-         //min-width: 210px;
-//margin: 10rem auto 10rem;
         h2{
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             line-height: 1;
-            font-weight: 400;
+            font-weight: 700;
             text-transform: uppercase;
             text-align: center;
             display: block;

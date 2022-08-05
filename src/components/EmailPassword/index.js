@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import './styles.scss';
+
 
 // actions
 
@@ -18,7 +18,7 @@ const mapState = ({user}) => ({
     userErr: user.userErr
 });
 
-const EmailPassword = props => {
+const EmailPassword = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -29,7 +29,10 @@ const EmailPassword = props => {
     useEffect(()=> {
         if(resetPasswordSuccess){
             dispatch(resetUserState())
-            history.push('/login');
+            history.push({
+                pathname: '/login',
+                state: 'An email has been sent to your email address!'
+            });
         }
     },[resetPasswordSuccess]);
 
@@ -45,7 +48,7 @@ const EmailPassword = props => {
     }
 
     const configAuthWrapper ={
-         headline: 'Email Password'
+         headline: 'Password Recovery'
     };
 
     return (
@@ -70,7 +73,7 @@ const EmailPassword = props => {
                         type= 'email'
                         name='email'
                         value= {email}
-                        placeholder="Email"
+                        placeholder="Enter a registered email address"
                         handleChange={e=> setEmail(e.target.value)}
                    />
 

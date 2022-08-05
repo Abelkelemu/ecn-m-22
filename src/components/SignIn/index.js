@@ -1,6 +1,6 @@
 import { useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import './styles.scss';
 
 //actions
@@ -22,12 +22,16 @@ const mapState = ({user}) => ({
 const SignIn = props => {
     
     const history = useHistory();
+   
+    const location = useLocation();
+     
     const {currentUser, signInErr} = useSelector(mapState);
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState();
     const [errors, setErrors] = useState([]);
-
+    
+    
 
     const resetForm = () => {
         setEmail('');
@@ -51,6 +55,10 @@ const SignIn = props => {
         }
     },[signInErr])
 
+    
+        // console.log(location.state)
+    
+  
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(emailSignInStart({email,password}))
@@ -65,6 +73,7 @@ const SignIn = props => {
         <AuthWrapper {...configAuthWrapper}>
     
             <div className="formWrap">
+                
                 {errors.length > 0 && (
                     <ul>
                         {errors.map((err, index) => {
@@ -76,6 +85,10 @@ const SignIn = props => {
                         })}
                     </ul>
                 )}
+                <div className="hisProps">
+                        {location.state && location.state}
+                </div>
+               
 
                 <form onSubmit={handleSubmit}>
 
@@ -94,7 +107,7 @@ const SignIn = props => {
                         placeholder="Password"
                         handleChange={e => setPassword(e.target.value)}
                     />
-                      
+             
                     <Button>
                         Sign in
                     </Button> 
