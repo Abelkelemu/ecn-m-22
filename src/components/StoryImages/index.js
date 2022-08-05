@@ -103,7 +103,7 @@ const StoryImages = () => {
         fetchStoryImagesStart({
             startAfterDoc : queryDoc,
             persistImages: data,
-            pageSize: 16
+            pageSize: 12
         })
     )   
       
@@ -128,13 +128,21 @@ const StoryImages = () => {
 
         <div className="preview">
       
-          <h1>Our Memories Are Countless </h1>
+          <h1>Our Memories Are Countless... </h1>
           {percentage>0 && <ProgressBar percentage = {percentage}/>}
           {percentage===0 && currentUser && currentUser.count<5 && student.count!==5   && <span onClick={() => toggleModal()}>
               +
           </span>}
 
-          <div className="previewWrap">
+          {percentage===0 && currentUser && currentUser.count>=5 && currentUser.id=='MZN0XXPpERhy1Q6LPA8O6Q6zsQy1'   && <span onClick={() => toggleModal()}>
+              +
+          </span>}
+
+
+
+          
+
+          <div className="previewWrap"> 
           <div className="img-grid">
   
   <Modal {...configModal}>

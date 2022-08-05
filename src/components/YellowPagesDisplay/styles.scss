@@ -1,42 +1,22 @@
-// .yellowPagePreview{
-//     margin: 75px;
-//     .img-grid {
-//         margin: 50px auto;
-//         display: grid;
-//         grid-template-columns: 1fr 1fr 1fr;
-//         grid-gap: 50px;
-         
-//     }
-// }
 
-// .yellowPageImgWrap{
-//   // overflow: hidden;
-//    //height: 0;
-//    padding: 50% 0;
-//     /* padding controls height, will always be perfectly square regardless of width */
-//     position: relative;
-    
-//     img{
-//         min-width: 100%;
-//         min-height: 100%;
-//         max-width: 100%;
-//         max-height: 100%;
-//         position: absolute;
-//         top: 0;
-//         left: 0;
-//         cursor: pointer;
-//     }
-// }
 
 .yellowPagePreview{
     display: block;
     width: 100%;
     padding: 0 10rem;
-    margin: 2rem 0;
+    margin:  0;
+    background-image:linear-gradient(to bottom right,#FFA500, black,rgb(200, 195, 195),black,rgb(200, 195, 195),#FFA500);
     .yellowPagePreviewResults{
         display: flex;
         flex-wrap: wrap;
-        margin: 3rem -10px 0;
+        margin: 3rem -10px\\ 0;
+    }
+    h1{
+      margin: 0 ;
+      font-size: 5rem;
+      text-align: center;
+      color: white;
+      padding: 4rem 0;
     }
 }
 
@@ -54,7 +34,9 @@
           width: 90%;
           height: 350px;
           margin: 0;
-          box-shadow: 1px 4px 5px rgba(0,0,0,0.5);
+          box-shadow: 6px 1px 1px #FFA500;
+          border: 4px solid #FFA500; z-index: 100;
+          
          // border: 1px solid white; z-index: 100;
         }
       }
@@ -72,6 +54,7 @@
     
         ul {
           li {
+            color: white;
             display: block;
             width: 100%;
             list-style-type: none;
@@ -79,7 +62,7 @@
             margin: 0 0 .5rem;
     
              a {
-                  color: black;
+                  color: white;
             }
     
                 .name {

@@ -1,15 +1,19 @@
 .StudentAreaWrap{
   
   margin: 1rem auto;
-  background-color: whitesmoke;
+  background-image:linear-gradient(to bottom right,#FFA500,white,#FFA500);
   max-width: 70rem;
+
+  h1{
+      margin: 0 ;
+      font-size: 5rem;
+      text-align: center;
+      color: black;
+      padding: 4rem 0;
+  }
 
   .yearbookImgWrap{
      text-align: center;
-
-    h1{
-      padding-top: 2rem;
-    }
 
     .icons{
       i{

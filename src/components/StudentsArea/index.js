@@ -277,7 +277,7 @@ const StudentsArea = props => {
     return (
  
         <div className='StudentAreaWrap'>
-          <h1>Yearbook</h1>
+          <h1>Yearbook Data</h1>
           <div className="yearbookImgWrap">
 
              
@@ -392,7 +392,7 @@ const StudentsArea = props => {
 
           </div>
            
-            <h1>Yellow Page</h1>
+            <h1>Yellow Pages Data</h1>
             <div className="yearbookImgWrap">
 
            
@@ -415,7 +415,7 @@ const StudentsArea = props => {
               
                 <form onSubmit = {handleSubmit4}>                
               
-                  <label htmlFor="yellowPageImg"><h2>Yellow Page Photo</h2></label>
+                  <label htmlFor="yellowPageImg"><h2>Yellow Pages Photo</h2></label>
               
                     <Button onClick={triggerFileSelectPopup}>
                      Choose an image

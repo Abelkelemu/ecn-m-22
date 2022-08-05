@@ -45,7 +45,7 @@ const YellowPagesDisplay = () => {
 
         <div className='yellowPagePreview'>
 
-            <h1>Yellow Page</h1>
+            <h1>Contact Details</h1>
             <div className="yellowPagePreviewResults">
   
           

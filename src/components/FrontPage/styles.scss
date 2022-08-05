@@ -1,10 +1,11 @@
 .frontPagePreview{
     margin: 0rem 0;
-    // background-image:
-    //  url("./../../assets/logo.png");
-    //  background-repeat: no-repeat;
-    //  background-position: center;
-    //  background-size:50rem;
+  // background-image:linear-gradient(to bottom right,#FFA500, black,black,white,#FFA500);
+    background-image:
+     url("./../../assets/frontPageBg.png");
+     background-repeat: no-repeat;
+    // background-position: center;
+     background-size:100%;
 
     .wrap{
         display: flex;
@@ -14,7 +15,7 @@
     }
     h1{
         margin: 0;
-        
+        font-size: 4rem;
         margin-left: 5rem ;
         padding-top:2rem ;
         color: black;
@@ -27,7 +28,7 @@
     width: 30%;
     margin: 0rem auto 4rem;
     padding: 2rem 2rem; 
-    background-color: #EAEDED;
+    background-image:linear-gradient(to bottom right,#FFA500,white,#FFA500);
     border-radius: 2rem;
 
 }
@@ -44,8 +45,10 @@
             width: 100%;
             height: 400px;
             margin: 0;
-            box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
-            border: 3px solid white; z-index: 100;
+            box-shadow: 6px 1px 1px #FFA500;
+            border: 4px solid #FFA500; z-index: 20;
+           // box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
+            //border: 3px solid white; z-index: 100;
           
           }
           .nextArrow{

@@ -49,7 +49,7 @@ const Header = props => {
                         </li>
                         <li>
                             <Link to="/yellowPages">
-                                Yellowpage
+                                Yellowpages
                             </Link>
                         </li>
                         {!currentUser && (

@@ -1,8 +1,7 @@
 .preview{
     padding: 0;
     margin: 0;
-    background-image:linear-gradient(to bottom right,#FFA500, black,black,white,#FFA500);
-   
+    background-image:linear-gradient(to bottom right,#FFA500, black,rgb(200, 195, 195),black,rgb(200, 195, 195),#FFA500);
     .loadMoreBtn{
         max-width: 140px;
         margin: 0 auto;
@@ -60,6 +59,13 @@
     /* padding controls height, will always be perfectly square regardless of width */
     position: relative;
     opacity: 0.8;
+   
+    
+      box-shadow: 6px 1px 1px #FFA500;
+      border: 4px solid #FFA500; z-index: 20;
+      transform: rotate(-2deg);
+      
+    
     
 
     img{
@@ -70,8 +76,8 @@
         top: 0;
         left: 0;
         cursor: pointer;
-        box-shadow: 6px 1px 1px #FFA500;
-        border: 4px solid #FFA500; z-index: 100;
+
+        
        
         
     }
@@ -119,3 +125,5 @@
     
    
   }
+
+  

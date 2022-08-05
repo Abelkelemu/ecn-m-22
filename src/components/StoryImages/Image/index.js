@@ -15,13 +15,15 @@ const Image = ({storyImageThumbnail}) => {
     
     if(!storyImageThumbnail) return null;
     return ( 
-       <div className="preview">
+       <div className="imgPreview">
+
             <ImageModal {...configModal}>
                 <motion.img src= {storyImageThumbnail}
                      initial={{y:"-100vh"}}
                      animate={{y:0}}
                 />
             </ImageModal>
+            
            <motion.div className="img-wrap"
                layout
                whileHover={{opacity:1}}
