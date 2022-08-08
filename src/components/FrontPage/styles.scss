@@ -56,3 +56,166 @@
         }
     }
 }
+
+
+@media only screen and (max-width: 1100px) {
+    .frontPagePreview{
+                 
+        .wrap{
+            display: block;   
+            margin: 0;
+            padding: 1rem;
+        }
+    }
+    
+    .frontPageContent{
+        width: 100%;
+        max-width: 55rem;
+        margin: 1rem  6rem;       
+    }
+    
+    .slideShow{
+        width: 100%;
+        max-width: 55rem;
+        margin-bottom: 2rem; 
+   }
+    
+}
+
+@media only screen and (max-width: 800px){
+    .frontPagePreview{
+                 
+        h1{
+            font-size: 3.5rem;
+        }
+    }
+    
+    .frontPageContent{
+        width: 100%;
+        max-width: 55rem;
+        margin: 1rem  auto;       
+    }
+        
+}
+
+@media only screen and (max-width: 700px){
+    .frontPagePreview{
+        h1{
+            font-size: 3rem;
+        }
+    }        
+}
+
+@media only screen and (max-width: 620px) {
+    
+    .frontPagePreview{
+        h1{
+            font-size: 2.6rem;
+        }
+    } 
+    .frontPageContent{
+        max-width: 40rem;      
+    }
+    
+    .slideShow{
+        max-width: 45rem; 
+
+        .slideShowImage{
+            
+            img{
+               
+     
+                height: 390px;
+        
+              }
+        }
+   }
+    
+}
+
+@media only screen and (max-width: 550px) {
+    .frontPagePreview{
+        h1{
+            text-align: center;
+            margin-left: 0;
+            padding-left: 0;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+    .frontPagePreview{
+        h1{
+            font-size: 2.2rem;
+        }
+    }
+    .frontPageContent{
+        font-size: 1.7rem;
+        max-width: 40rem;      
+    }
+
+    .slideShow{
+       max-width: 40rem;
+   
+    
+        .slideShowImage{
+           
+            img{
+              
+                height: 320px;
+                
+              }
+           
+        }
+    }
+}
+
+
+@media only screen and (max-width: 450px) {
+    .frontPagePreview{
+        h1{
+            font-size: 2.1rem;
+        }
+    }
+    .frontPageContent{
+        font-size: 1.5rem;
+        max-width: 32rem;      
+    }
+
+    .slideShow{
+       max-width: 35rem;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .frontPagePreview{
+        h1{
+            font-size: 2rem;
+        }
+    }
+    .frontPageContent{
+        font-size: 1.5rem;
+        max-width: 32rem;      
+    }
+
+    .slideShow{
+       max-width: 32rem;
+
+       img{
+               
+     
+        height: 320px;
+
+      }
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .frontPagePreview{
+        h1{
+            font-size: 1.8rem;
+        }
+    }
+}
+
