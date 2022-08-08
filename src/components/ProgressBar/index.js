@@ -1,8 +1,9 @@
 import './styles.scss'
+//UI
 import { motion } from 'framer-motion';
+
 const ProgressBar = ({percentage}) => {
     
-   // console.log(percentage)
     return ( 
         <motion.div className="progress-bar"
             initial={{width:0}}

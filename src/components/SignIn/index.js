@@ -12,27 +12,24 @@ import { emailSignInStart } from '../../redux/User/user.actions';
 import Button from '../forms/Button';
 import FormInput from '../forms/FormInput';
 import AuthWrapper from '../AuthWrapper';
-import userSagas from '../../redux/User/user.sagas';
+
 
 const mapState = ({user}) => ({
     currentUser: user.currentUser,
     signInErr: user.signInErr
 });
 
-const SignIn = props => {
+const SignIn = () => {
     
     const history = useHistory();
-   
     const location = useLocation();
+    const dispatch = useDispatch();
      
     const {currentUser, signInErr} = useSelector(mapState);
-    const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState();
     const [errors, setErrors] = useState([]);
     
-    
-
     const resetForm = () => {
         setEmail('');
         setPassword('');
@@ -44,9 +41,7 @@ const SignIn = props => {
         if(currentUser){
             resetForm();
             history.push('/');
-          
-        }
-           
+        }    
     },[currentUser]);
 
     useEffect(()=> {
@@ -54,16 +49,12 @@ const SignIn = props => {
             setErrors(signInErr);
         }
     },[signInErr])
-
-    
-        // console.log(location.state)
-    
+   
   
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(emailSignInStart({email,password}))
     }
-
 
     const configAuthWrapper = {
         headline: 'LogIn'
@@ -73,7 +64,6 @@ const SignIn = props => {
         <AuthWrapper {...configAuthWrapper}>
     
             <div className="formWrap">
-                
                 {errors.length > 0 && (
                     <ul>
                         {errors.map((err, index) => {
@@ -85,18 +75,18 @@ const SignIn = props => {
                         })}
                     </ul>
                 )}
+
                 <div className="hisProps">
                         {location.state && location.state}
                 </div>
                
-
                 <form onSubmit={handleSubmit}>
 
                     <FormInput 
                         type="email"
                         name="email"
                         value={email}
-                        placeholder="Email"
+                        placeholder="Enter a registered email address"
                         handleChange={e => setEmail(e.target.value)}
                     />
 
@@ -114,7 +104,7 @@ const SignIn = props => {
 
                     <div className="links">
                         <Link to="/recovery">
-                            Reset Password
+                            Forgot Password?
                         </Link>
                     </div>
                 </form>

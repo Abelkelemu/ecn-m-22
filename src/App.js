@@ -24,7 +24,7 @@ import Yearbook from './pages/Yearbook';
 
 
 
-const App = props => {
+const App = () => {
   const dispatch = useDispatch();
 
   useEffect(()=>{
@@ -35,6 +35,7 @@ const App = props => {
     return (
       <div className="App">
           <Switch>
+
             <Route exact path="/" render={() => (
                <HomepageLayout>
                  <Homepage/>
@@ -51,17 +52,15 @@ const App = props => {
               <MainLayout>
                 <Recovery/>
               </MainLayout>
-            )} />
+            )}/>
             
-       
-
+  
             <Route path="/studentArea" render = {() => (
               <WithAuth>
                <MainLayout>
                  <Student/>
                </MainLayout>
               </WithAuth>
-          
             )} />
 
             <Route path="/storypage" render = {() => (

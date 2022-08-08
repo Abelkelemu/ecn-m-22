@@ -1,14 +1,14 @@
 import React from 'react';
 import { useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input';
 import './styles.scss'
+import 'react-phone-number-input/style.css'
 
 //assets
 import uploadImg from '../../assets/uploadImg.PNG'
-// components
 
+// components
 import Button from '../forms/Button';
 import Modal from '../Modal';
 import FormInput from '../forms/FormInput';
@@ -26,40 +26,30 @@ const mapState = ({user}) => ({
   student: user.student
 });
 
-const StudentsArea = props => {
+const StudentsArea = () => {
 
     const dispatch = useDispatch();
     const inputRef = React.useRef();
     const {currentUser, student, userPercentage } = useSelector(mapState);
-    
     const {id } = currentUser;
     const { yearbookimgOneThumbnail, yellowpageimgThumbnail,firstName,lastName,phoneNumber,emailAddress,instagramUsername,facebookUsername,yearbookQuote} = student;
-
     const [hideModal, setHideModal] = useState(true);
     const [hideModal2, setHideModal2] = useState(true);
     const [hideModal3, setHideModal3] = useState(true);
     const [hideModal4, setHideModal4] = useState(true);
-
     const [image, setImage] = useState(null);
     const [imagePreview, setimagePreview] = useState();
-
     const [error,setError] = useState('');
-
     const [fN,setFN] = useState(firstName);
     const [lN,setLN] = useState(lastName);
     const[ybQ, setYbQ] = useState(yearbookQuote);
-    
     const[eA, setEA] = useState(emailAddress);
     const[pN, setPN] = useState(phoneNumber);
     const[igU, setIgU] = useState(instagramUsername);
     const[fbU, setFbU] = useState(facebookUsername);
-
     const[fPic, setFPic] = useState(true);
     const[sPic, setSPic] = useState(true);
 
-
-    
-   
    
     useEffect(() => {
         dispatch(
@@ -101,14 +91,16 @@ const StudentsArea = props => {
       setHideModal4(!hideModal4)
       setimagePreview()
       setImage(null)
+      setError('')
     };
       
     const resetForm = () =>{
       setHideModal(true);
       setHideModal3(true);
       setHideModal4(true)
-      setimagePreview()
-      setImage(null)
+      setimagePreview();
+      setImage(null);
+      setError('');
       
     }
 
@@ -133,7 +125,7 @@ const StudentsArea = props => {
       toggleModal : toggleModal4,
     };
    
-    const handleSubmit = e => {
+    const handleSubmitYearbookPhoto = e => {
         e.preventDefault();
         setFPic(true);
         setSPic(false);
@@ -148,7 +140,7 @@ const StudentsArea = props => {
         resetForm();
     }
 
-    const handleSubmit2 = e => {
+    const handleSubmitDeleteYearbookPhoto = e => {
         e.preventDefault();
         dispatch(
           updateTextStart({
@@ -159,7 +151,7 @@ const StudentsArea = props => {
         )
     }
 
-    const handleSubmit3 = e => {
+    const handleSubmitEditYearbookData = e => {
       e.preventDefault();
       dispatch(
         updateTextStart({
@@ -187,7 +179,7 @@ const StudentsArea = props => {
 
     
        
-    const handleSubmit4 = e => {
+    const handleSubmitYellowPagePhoto = e => {
       e.preventDefault();
       setFPic(false);
       setSPic(true);
@@ -202,7 +194,7 @@ const StudentsArea = props => {
       resetForm();
   }
 
-   const handleSubmit5 = e => {
+   const handleSubmitDeleteYellowPagePhoto = e => {
         e.preventDefault();
         dispatch(
           updateTextStart({
@@ -212,7 +204,8 @@ const StudentsArea = props => {
           })  
         )
     }
-    const handleSubmit6 = e => {
+
+    const handleSubmitEditYellowPageData = e => {
       e.preventDefault();
       dispatch(
         updateTextStart({
@@ -277,20 +270,23 @@ const StudentsArea = props => {
     return (
  
         <div className='StudentAreaWrap'>
+          
           <h1>Yearbook Data</h1>
           <div className="yearbookImgWrap">
 
-             
             {fPic && userPercentage>0 && <ProgressBar percentage = {userPercentage}/>}
             {yearbookimgOneThumbnail? <img src={yearbookimgOneThumbnail} alt="" /> : <img src ={uploadImg} onClick={() => toggleModal()} />}
            
             <div className="icons">
+
               <div className="deleteIcon">
-                <i title="Delete Picture" className = "deleteIcon"class="fa fa-trash-alt" aria-hidden="true" onClick={handleSubmit2}></i>
+                <i title="Delete Picture" className = "deleteIcon"class="fa fa-trash-alt" aria-hidden="true" onClick={handleSubmitDeleteYearbookPhoto}></i>
               </div>
+
               <div className="editIcon">
                 <i title = "Edit Picture" class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal()}></i>
               </div>
+
             </div>
 
             
@@ -298,14 +294,14 @@ const StudentsArea = props => {
 
               <div className="updateYearbookImg">
               
-                <form onSubmit = {handleSubmit}>                
+                <form onSubmit = {handleSubmitYearbookPhoto}>                
               
                   <label htmlFor="yearbookImage"><h2>Yearbook Photo</h2></label>
               
                     <Button onClick={triggerFileSelectPopup}>
                      Choose an image
                     </Button>
-              
+                    <h3>{error && error}</h3>
                     <input 
                       type="file" 
                       name="yearbookImage"
@@ -329,7 +325,7 @@ const StudentsArea = props => {
                       Finish
                     </Button>
 
-                    <Button onClick={() => {setHideModal(true); resetImage()}}>
+                    <Button onClick={() => {setHideModal(true); resetImage(); setError('')} }>
                       Close
                     </Button>
 
@@ -358,8 +354,9 @@ const StudentsArea = props => {
               <div className="iconTextEdit">
                    <i title="Edit Texts "class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal2()}></i>
               </div>
+
               <Modal {...configModal2}>
-                  <form onSubmit={handleSubmit3}>
+                  <form onSubmit={handleSubmitEditYearbookData}>
                     First Name
                     <FormInput
                       type= "text"
@@ -392,16 +389,15 @@ const StudentsArea = props => {
 
           </div>
            
-            <h1>Yellow Pages Data</h1>
-            <div className="yearbookImgWrap">
+          <h1>Yellow Pages Data</h1>
+          <div className="yearbookImgWrap">
 
-           
             {sPic && userPercentage>0 && <ProgressBar percentage = {userPercentage}/>}
             {yellowpageimgThumbnail? <img src={yellowpageimgThumbnail} alt="" /> : <img src ={uploadImg} onClick={() => toggleModal4()} />}
            
             <div className="icons">
               <div className="deleteIcon">
-                <i title="Delete Picture" className = "deleteIcon"class="fa fa-trash-alt" aria-hidden="true" onClick={handleSubmit5}></i>
+                <i title="Delete Picture" className = "deleteIcon"class="fa fa-trash-alt" aria-hidden="true" onClick={handleSubmitDeleteYellowPagePhoto}></i>
               </div>
               <div className="editIcon">
                 <i title = "Edit Picture" class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal4()}></i>
@@ -413,14 +409,14 @@ const StudentsArea = props => {
 
               <div className="updateYearbookImg">
               
-                <form onSubmit = {handleSubmit4}>                
+                <form onSubmit = {handleSubmitYellowPagePhoto}>                
               
                   <label htmlFor="yellowPageImg"><h2>Yellow Pages Photo</h2></label>
               
                     <Button onClick={triggerFileSelectPopup}>
                      Choose an image
                     </Button>
-              
+                    <h3>{error && error}</h3>
                     <input 
                       type="file" 
                       name="yellowPageImg"
@@ -486,7 +482,7 @@ const StudentsArea = props => {
               </div>
               <br />
               <Modal {...configModal3}>
-                  <form onSubmit={handleSubmit6}>
+                  <form onSubmit={handleSubmitEditYellowPageData}>
                     First Name
                     <FormInput
                       type= "text"
@@ -542,12 +538,8 @@ const StudentsArea = props => {
               </Modal>
 
           </div>
-
-            
+   
         </div>
-
-
-
   
     )
 };

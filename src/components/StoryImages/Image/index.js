@@ -1,5 +1,9 @@
-import ImageModal from "../../ImageModal";
 import { useState } from "react";
+
+// components
+import ImageModal from "../../ImageModal";
+
+//UI
 import { motion } from "framer-motion";
 
 
@@ -37,11 +41,7 @@ const Image = ({storyImageThumbnail}) => {
        </div>
       
        
-      //   <div className="image">
-      //      <div className="thumb">
-      //       <img src={storyImageThumbnail} alt="StoryBook" />
-      //      </div>
-      //   </div>
+
      );
 }
  

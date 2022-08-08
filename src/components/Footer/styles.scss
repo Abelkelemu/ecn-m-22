@@ -1,37 +1,49 @@
 .footer {
-  background-image:linear-gradient(to bottom right,black, #FFA500, #FFA500,black);
-   // background-color: #FFA500;
-    margin-top: 0;
+  background-image:linear-gradient(to bottom right,black, #FFA500, #FFA500,black); 
+  margin-top: 0;
+
       .footerWrap {
         max-width: 1450px;
        
+       
         .copyright{
           text-align: center;
-          padding-bottom: 1rem;
-          color: black; 
-          font-size: 2.5rem; 
+          padding-bottom: 0.5rem;
+          
+          a{
+            color: black; 
+            font-size: 2.2rem; 
+
+            &:last-child{
+              font-size: 1.3rem; 
+            }
+
+            p{
+              margin: 5px;
+            }
+            
+          }
         }
         
         .socialMedia{
           text-align: center; 
               
-              a{
-                  color: white;
-                  font-size: 3rem;
-                  padding: 5px;
+          a{
+              color: white;
+              font-size: 2.5rem;
+              padding: 5px;
                   
-                  &:hover{
-                    color:black;
-                  }
-              }
-              .instaFooterIcon{
-                color: #bc2a8d;
-                &:hover{
-                  color: #8a3ab9;
-                }
+              &:hover{
+                  color:black;
               }
             }
+
+          .instaFooterIcon{
+              color: #bc2a8d;
+              &:hover{
+                color: #8a3ab9;
+              }
+          }
         }
-  
-      
+      }   
   }

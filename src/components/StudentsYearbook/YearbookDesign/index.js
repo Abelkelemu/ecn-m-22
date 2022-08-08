@@ -1,9 +1,4 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-
-
-const YearbookDesign = (props) => {
+const YearbookDesign = props => {
 
   const {firstName,
          lastName,
@@ -15,15 +10,12 @@ const YearbookDesign = (props) => {
     return ( 
       <div className="studentsYearbookPreview">
        
-        
         <div className="yearbookThumb">
-          
           <img src={yearbookimgOneThumbnail} alt='' /> 
         </div>   
 
         <div className="yearbookDetails">
           <ul>
-
             {firstName && lastName && (
               <li>
                 <span className="name">
@@ -42,9 +34,6 @@ const YearbookDesign = (props) => {
           </ul>
         </div>     
      </div>   
-       
-  
-     );
+    );
 }
- 
 export default YearbookDesign;

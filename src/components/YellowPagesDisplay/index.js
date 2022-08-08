@@ -1,11 +1,10 @@
 import React from 'react';
-import {  useEffect, useState } from "react";
+import {  useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllUsersStart } from '../../redux/User/user.actions';
 import './styles.scss'
 
 // actions
-
+import { fetchAllUsersStart } from '../../redux/User/user.actions';
 
 // components
 
@@ -13,12 +12,9 @@ import Yellowpage from './YellowPage';
 
 // assets
 
-
 const mapState = ({user}) => ({
     allStudents: user.allStudents
 })
-
-
 
 const YellowPagesDisplay = () => {
 
@@ -32,6 +28,7 @@ const YellowPagesDisplay = () => {
             fetchAllUsersStart()
         )
     },[])
+
     if(!Array.isArray(data)) return null;
     if(data.length< 1){
         return (
@@ -46,38 +43,32 @@ const YellowPagesDisplay = () => {
         <div className='yellowPagePreview'>
 
             <h1>Contact Details</h1>
+
             <div className="yellowPagePreviewResults">
-  
-          
-
-            {data.map((yellowPageData,pos)=>{
-                const {firstName,
-                     lastName,
-                     yellowpageimgThumbnail,
-                     emailAddress,
-                     phoneNumber,
-                     instagramUsername,
-                     facebookUsername
-                    } = yellowPageData;
-               // if(!storyImageThumbnail) return null;
-                const configImage = {
-                    firstName,
-                    lastName,
-                    yellowpageimgThumbnail,
-                    emailAddress,
-                    phoneNumber,
-                    instagramUsername,
-                    facebookUsername
-                } 
-                return(
-                    <Yellowpage {...configImage}/>
-                );
-            })}
-          </div>
-        
-
-        </div>
-       
+                {data.map((yellowPageData,pos)=>{
+                    const {firstName,
+                        lastName,
+                        yellowpageimgThumbnail,
+                        emailAddress,
+                        phoneNumber,
+                        instagramUsername,
+                        facebookUsername
+                        } = yellowPageData;
+                    const configImage = {
+                        firstName,
+                        lastName,
+                        yellowpageimgThumbnail,
+                        emailAddress,
+                        phoneNumber,
+                        instagramUsername,
+                        facebookUsername
+                    } 
+                    return(
+                        <Yellowpage {...configImage}/>
+                    );
+                })}
+            </div>
+        </div> 
     );
 }
  

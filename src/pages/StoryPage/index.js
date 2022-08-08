@@ -1,6 +1,6 @@
 import StoryImages from "../../components/StoryImages";
  
-const StoryPage = props => {
+const StoryPage = () => {
     return ( 
         <section className="storypage">
            <StoryImages/>

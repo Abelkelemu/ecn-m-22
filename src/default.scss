@@ -3,7 +3,6 @@ html {
 }
 html,
 body{
-   
     margin:0;
     padding:0;
 }
@@ -34,6 +33,7 @@ a{
     text-decoration: none;
     cursor: pointer;
 }
+
 a, a:hover{
     -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
@@ -43,9 +43,7 @@ a, a:hover{
 .main{
     width:100%;
     background-color: white;
-   min-height: calc(100vh - 8.5rem - 242px);
+    min-height: calc(100vh - 8.5rem - 242px);
     max-width: 1550px;
-    
-   // padding: 10px 20px;
     margin: 0 auto;
 }

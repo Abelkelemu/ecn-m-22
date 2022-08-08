@@ -1,4 +1,4 @@
-import './styles.scss';
+
 import SignIn from '../../components/SignIn';
 
 const Login = props => {

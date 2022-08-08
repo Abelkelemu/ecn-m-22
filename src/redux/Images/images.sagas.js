@@ -1,25 +1,29 @@
-import { takeLatest, call, all, put, take } from "redux-saga/effects";
-import { auth, handleUserProfile, getCurrentUser } from "../../firebase/utils";
-import { setStoryImages } from "./images.actions";
-import { handleAddImage, handleDeleteImage, handleFetchStoryImages } from "./images.helper";
-import imagesTypes from "./images.types";
-import { setPercentage, fetchStoryImagesStart } from "./images.actions";
-import { buffers } from "redux-saga";
 
+import { buffers } from "redux-saga";
+import { takeLatest, call, all, put, take } from "redux-saga/effects";
+
+// utils
+import { auth } from "../../firebase/utils";
+
+//actions
+import { setPercentage, fetchStoryImagesStart ,setStoryImages} from "./images.actions";
 import { fetchUserStart } from "../User/user.actions";
 
+// helper functions
+import { handleAddImage, handleDeleteImage, handleFetchStoryImages } from "./images.helper";
 
-export function* addImage ( {payload}) {
- 
- 
-  
+//Scripts
+import imagesTypes from "./images.types";
+
+
+export function* addImage ( {payload}) {  
     try{
       const studentUID =auth.currentUser.uid;
       const timestamp = new Date();
   
       const channel = yield handleAddImage({
         ...payload,
-        studentUID: auth.currentUser.uid,
+        studentUID: studentUID,
         createdDate: timestamp
       });
 
@@ -38,58 +42,48 @@ export function* addImage ( {payload}) {
         yield put(setPercentage(progress))
         
       }
-          
-      
-  
     } catch (err){
       //  console.log(err);
     }
-  }
+}
   
-  export function* onAddImageStart () {
-   yield takeLatest (imagesTypes.ADD_NEW_IMAGE_START,addImage)
-  } 
+export function* onAddImageStart () {
+    yield takeLatest (imagesTypes.ADD_NEW_IMAGE_START,addImage)
+} 
   
   
-  export function* deleteImage({payload}) {
+export function* deleteImage({payload}) {
     try {
-      yield handleDeleteImage(payload);
-      // yield put (
-      //   fetchProductsStart()
-      // );
-  
+      yield handleDeleteImage(payload); 
     } catch (err) {
       // console.log(err);
     }
-  }
+}
   
   
-  export function* onDeleteImageStart() {
+export function* onDeleteImageStart() {
     yield takeLatest(imagesTypes.DELETE_IMAGE_START, deleteImage);
-  }
+}
 
-  export function* fetchStoryImages ({payload}) {
+export function* fetchStoryImages ({payload}) {
     try{
       const storyImages = yield handleFetchStoryImages(payload);
-      
       yield put (
-        
         setStoryImages(storyImages)
       );
     } catch(err){
       // console.log(err)
-    }
+    }  
+}
   
-  }
-  
-  export function* onFetchStoryImagesStart(){
-    yield takeLatest(imagesTypes.FETCH_STORY_IMAGES_START,fetchStoryImages)
-  }
+export function* onFetchStoryImagesStart(){
+  yield takeLatest(imagesTypes.FETCH_STORY_IMAGES_START,fetchStoryImages)
+}
 
-  export default function* imagesSagas() {
-        yield all([
-          call(onAddImageStart),
-          call(onDeleteImageStart),
-          call(onFetchStoryImagesStart),
-        ])
-    }
+export default function* imagesSagas() {
+    yield all([
+      call(onAddImageStart),
+      call(onDeleteImageStart),
+      call(onFetchStoryImagesStart),
+    ])
+}

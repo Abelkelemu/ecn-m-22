@@ -1,8 +1,3 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-
-
 const Yellowpage = (props) => {
 
   const {firstName,
@@ -17,6 +12,7 @@ const Yellowpage = (props) => {
 
     return ( 
       <div className="studentPreview">
+
         <div className="thumb">
           <img src={yellowpageimgThumbnail} alt='' /> 
         </div>   
@@ -81,10 +77,7 @@ const Yellowpage = (props) => {
 
           </ul>
         </div>     
-     </div>   
-       
-  
-     );
+      </div>   
+    );
 }
- 
 export default Yellowpage;

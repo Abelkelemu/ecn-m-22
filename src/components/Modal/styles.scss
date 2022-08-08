@@ -1,6 +1,7 @@
 .modalOverlay {
     position: fixed;
-    top: 0; left: 0;
+    top: 0; 
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,.3);
@@ -9,7 +10,8 @@
   
   .modalWrap {
     position: fixed;
-    top: 0; left: 0;
+    top: 0; 
+    left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
@@ -17,20 +19,21 @@
   
     .modal {
       position: absolute;
-      top: 50%; left: 50%;
+      top: 50%; 
+      left: 50%;
+      padding: 1rem;
       -webkit-transform: translate(-50%, -50%);
       -moz-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
-      background-color: white;
       width: 95%;
-      padding: 1rem;
       max-width: 40rem;
       height: auto;
       min-height: 30.0rem;
-      pointer-events: all;
       max-height: 95vh;
+      pointer-events: all;
       overflow: auto;
-     // border-radius: 100px;
+      border-radius: 10px;
+      background-image:linear-gradient(to bottom right,#FFA500,white,#FFA500);
     }
   }
 

@@ -75,9 +75,6 @@ export const setUserPercentage = percentage => ({
 })
 
 
-
-/////////////////////////////////
-
 export const fetchAllUsersStart = () => ({
   type: userTypes.FETCH_ALL_USERS_START,
 })

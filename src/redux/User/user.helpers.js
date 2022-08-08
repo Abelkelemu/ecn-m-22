@@ -1,12 +1,17 @@
+import { v4 as uuidv4 } from "uuid";
+import { eventChannel } from "redux-saga";
+
+// utils
+
 import { auth } from "../../firebase/utils";
 import { firestore, storage } from "../../firebase/utils";
-import { v4 as uuidv4 } from "uuid";
-import { userError } from "./user.actions";
-import { eventChannel } from "redux-saga";
+
+
+
 export const handleResetPasswordAPI = (email) => {
 
     const config = {
-        url:'http://localhost:3000/login'
+        url:'https://ecn-m-22.web.app/login'
     };
     return new Promise((resovle, reject) => {
         auth.sendPasswordResetEmail(email,config)
@@ -60,14 +65,6 @@ export const handleUpdateImage = (payload) => {
 
 }
 
-
-
-
-
-  
-      
- 
-
 export const handleUpdateText = (payload) => {
       const id = payload.id
       const field = payload.field
@@ -89,9 +86,6 @@ export const handleUpdateText = (payload) => {
       })
       }
 )}
-
-
-
 
 export const handleFetchUser = uID => {
   return new Promise((resolve, reject) => {
@@ -136,6 +130,3 @@ export const handleFetchAllUsers = () => {
       })
   })
 }
-
-
-

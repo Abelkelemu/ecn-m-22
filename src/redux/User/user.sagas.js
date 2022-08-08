@@ -1,9 +1,21 @@
-import { takeLatest, call, all, put, take } from "redux-saga/effects";
-import { auth, handleUserProfile, getCurrentUser } from "../../firebase/utils";
-import userTypes from "./user.types";
-import { signInSuccess, signOutUserSuccess, userError, resetPasswordSuccess, signInError, setUser, fetchUserStart, setUserPercentage, setAllUsers } from "./user.actions";
-import { handleResetPasswordAPI, handleUpdateImage,handleUpdateText, handleFetchUser, handleFetchAllUsers} from "./user.helpers";
 import { buffers } from "redux-saga";
+import { takeLatest, call, all, put, take } from "redux-saga/effects";
+
+
+// utils
+import { auth, handleUserProfile, getCurrentUser } from "../../firebase/utils";
+
+
+//scripts
+import userTypes from "./user.types";
+
+//actions
+
+import { signInSuccess, signOutUserSuccess, userError, resetPasswordSuccess, signInError, setUser, fetchUserStart, setUserPercentage, setAllUsers } from "./user.actions";
+
+//helper functions
+import { handleResetPasswordAPI, handleUpdateImage,handleUpdateText, handleFetchUser, handleFetchAllUsers} from "./user.helpers";
+
 export function* getSnapshotFromUserAuth(user) {
     try{
      const userRef = yield call(handleUserProfile,{ userAuth: user});
@@ -32,14 +44,14 @@ export function* emailSignIn({ payload: { email, password } }) {
       )
      // console.log(err);
     }
-  }
+}
   
 
 export function* onEmailSignInStart() {
     yield takeLatest(userTypes.EMAIL_SIGN_IN_START, emailSignIn);
-  }
+}
 
-  export function* isUserAuthenticated() {
+export function* isUserAuthenticated() {
     try {
       const userAuth = yield getCurrentUser();
       if (!userAuth) return;
@@ -52,13 +64,13 @@ export function* onEmailSignInStart() {
        )
       console.log(err);
     }
-  }
+}
   
-  export function* onCheckUserSession() {
+export function* onCheckUserSession() {
     yield takeLatest(userTypes.CHECK_USER_SESSION, isUserAuthenticated);
-  }
+}
 
-  export function* signOutUser() {
+export function* signOutUser() {
     try {
       yield auth.signOut();
       yield put(
@@ -68,13 +80,13 @@ export function* onEmailSignInStart() {
     } catch (err) {
       // console.log(err);
     }
-  }
+}
   
-  export function* onSignOutUserStart() {
+export function* onSignOutUserStart() {
     yield takeLatest(userTypes.SIGN_OUT_USER_START, signOutUser);
-  }
+}
 
-  export function* resetPassword ({ payload: {email}}){
+export function* resetPassword ({ payload: {email}}){
     
     try{ 
      yield call(handleResetPasswordAPI, email);
@@ -94,6 +106,7 @@ export function* onResetPasswordStart(){
 }
 
 export function* updateImage ({payload}) {
+
   const uID = payload.id;
   try{
     const channel = yield handleUpdateImage(payload)
@@ -128,10 +141,7 @@ export function* updateText ({payload}) {
   try{
    yield handleUpdateText(payload)
    yield put(fetchUserStart(uID))
-    // yield put(
-    //   fetchProductsStart()
-    // );
-
+  
   }catch(err){
     //console.log(err)
   }

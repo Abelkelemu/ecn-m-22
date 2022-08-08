@@ -1,4 +1,6 @@
 import './styles.scss';
+
+// UI
 import { motion } from 'framer-motion';
 
 const Modal = ({ hideModal, toggleModal, children }) => {
