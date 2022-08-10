@@ -4,6 +4,7 @@
   background-image:linear-gradient(to bottom right,#FFA500,white,#FFA500);
   max-width: 70rem;
 
+ 
   h1{
       margin: 0 ;
       font-size: 5rem;
@@ -118,5 +119,11 @@
 .phoneInput{
   width: 100%;
   padding: 25px;
+}
+
+@media only screen and (max-width:700px) {
+  .StudentAreaWrap{
+    margin: 0 auto;
+  }
 }
 

@@ -61,7 +61,7 @@ const FrontPage = props => {
 
     return (
         <div className="frontPagePreview">
-            <h1>Ecole Centrale de Nantes | Mauritius Batch 2022 </h1>
+            <h1>Ecole Centrale de Nantes - Mauritius Batch 2022 </h1>
 
             <div className="wrap">
 

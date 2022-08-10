@@ -130,7 +130,7 @@ const StoryImages = () => {
               <Modal {...configModal}>
                 <div className="addStoryImage">
                   <form onSubmit = {handleSubmit}>
-                    <label htmlFor="yearbook-small-image"><h2>Image Preview</h2></label>
+                    <label htmlFor="yearbook-small-image"><h2>Storybook Photo</h2></label>
                       <h3>{error && error}</h3>
                       <Button onClick={triggerFileSelectPopup}>
                         Choose an image
@@ -157,7 +157,7 @@ const StoryImages = () => {
                       </Button>
 
                       <Button onClick={() => {setHideModal(true); resetImage(); setError('')}}>
-                          Close
+                          Cancel
                       </Button>
         
                   </form>

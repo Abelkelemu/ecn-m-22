@@ -326,7 +326,7 @@ const StudentsArea = () => {
                     </Button>
 
                     <Button onClick={() => {setHideModal(true); resetImage(); setError('')} }>
-                      Close
+                      Cancel
                     </Button>
 
                 </form>
@@ -381,8 +381,12 @@ const StudentsArea = () => {
                       placeholder={ybQ}
                       handleChange = {e => setYbQ(e.target.value)}
                       />
-                      <Button type= "submit">
+                      <Button type= "submit" >
                         Submit
+                      </Button>
+                     <br />
+                      <Button onClick={() => {setHideModal2(true)}}>
+                          Cancel
                       </Button>
                   </form>
               </Modal>
@@ -441,7 +445,7 @@ const StudentsArea = () => {
                     </Button>
 
                     <Button onClick={() => {setHideModal4(true); resetImage()}}>
-                      Close
+                      Cancel
                     </Button>
 
                 </form>
@@ -533,6 +537,10 @@ const StudentsArea = () => {
                       />
                       <Button type= "submit">
                         Submit
+                      </Button>
+                        <br />
+                      <Button onClick={() => {setHideModal3(true)}}>
+                          Cancel
                       </Button>
                   </form>
               </Modal>

@@ -60,6 +60,9 @@
 
 @media only screen and (max-width: 1100px) {
     .frontPagePreview{
+        h1{
+            margin-bottom: 2rem;
+        }
                  
         .wrap{
             display: block;   
@@ -191,7 +194,8 @@
 @media only screen and (max-width: 400px) {
     .frontPagePreview{
         h1{
-            font-size: 2rem;
+            font-weight: bold;
+            font-size: 3rem;
         }
     }
     .frontPageContent{
@@ -214,7 +218,8 @@
 @media only screen and (max-width: 370px) {
     .frontPagePreview{
         h1{
-            font-size: 1.8rem;
+            font-weight: bold;
+            font-size: 3rem;
         }
     }
 }

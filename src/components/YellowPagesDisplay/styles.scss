@@ -100,3 +100,45 @@
     
       }
 }
+
+@media only screen and (max-width:1000px){
+    .studentPreview{
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width:800px){
+   
+    .yellowPagePreview{
+        padding: 0 5rem;
+    }
+}
+
+@media only screen and (max-width:600px){
+    .studentPreview{
+        width: 100%;
+    }
+    .yellowPagePreview{
+        padding: 0 9rem;
+        background-image:linear-gradient(to bottom right,#FFA500,rgb(0, 0, 0),rgb(0, 0, 0),#FFA500);
+    
+    }
+}
+
+@media only screen and (max-width:460px){
+   
+    .yellowPagePreview{
+        padding: 0 6rem;
+       
+    
+    }
+}
+
+@media only screen and (max-width:400px){
+   
+    .yellowPagePreview{
+        padding: 0 4rem;
+       
+    
+    }
+}
