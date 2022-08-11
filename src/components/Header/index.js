@@ -99,7 +99,7 @@ const Header = () => {
 
                     {currentUser && 
                             <li>
-                                <span onClick = {()=>signOut()}>LOGOUT</span>
+                                <span onClick = {()=>{signOut(); handleClick()}}>LOGOUT</span>
                             </li>
                     }
 

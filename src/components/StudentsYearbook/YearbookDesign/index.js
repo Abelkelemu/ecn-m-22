@@ -1,3 +1,4 @@
+import grad from './../../../assets/grad.png'
 const YearbookDesign = props => {
 
   const {firstName,
@@ -11,7 +12,7 @@ const YearbookDesign = props => {
       <div className="studentsYearbookPreview">
        
         <div className="yearbookThumb">
-          <img src={yearbookimgOneThumbnail} alt='' /> 
+          <img src={yearbookimgOneThumbnail? yearbookimgOneThumbnail:grad} alt='' /> 
         </div>   
 
         <div className="yearbookDetails">
@@ -26,7 +27,7 @@ const YearbookDesign = props => {
 
             {yearbookQuote && yearbookQuote && (
               <li>
-                <span className="emailAddress">
+                <span className="yearbookQuote">
                  "{yearbookQuote.charAt(0).toUpperCase()+yearbookQuote.slice(1)}"
                 </span>
             </li>

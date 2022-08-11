@@ -13,6 +13,7 @@ import LoadMore from "../LoadMore";
 import imgUpload from "./../../assets/uploadImg.PNG"
 
 
+
 // UI
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -66,9 +67,9 @@ const FrontPage = props => {
             <div className="wrap">
 
                  <div className="frontPageContent">
-                    <h1>ECN-M-22?</h1>
-                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur nobis rerum explicabo totam doloribus assumenda error maiores veniam facere porro repudiandae vitae dolores a, illum ullam architecto sunt odio excepturi.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur nobis rerum explicabo totam doloribus assumenda error maiores veniam facere porro repudiandae vitae dolores a, illum ullam architecto sunt odio excepturi.</p>
+                    <h1>ECN-M-22</h1>
+                    <p> loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading....</p>
+                    <p> loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading....</p>
                 </div> 
 
                 <div className="slideShow">

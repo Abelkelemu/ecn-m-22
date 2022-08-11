@@ -1,3 +1,4 @@
+import yellowp from './../../../assets/yellowp.png'
 const Yellowpage = (props) => {
 
   const {firstName,
@@ -14,7 +15,7 @@ const Yellowpage = (props) => {
       <div className="studentPreview">
 
         <div className="thumb">
-          <img src={yellowpageimgThumbnail} alt='' /> 
+          <img src={yellowpageimgThumbnail? yellowpageimgThumbnail: yellowp} alt='' /> 
         </div>   
 
         <div className="details">
