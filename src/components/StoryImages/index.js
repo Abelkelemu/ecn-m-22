@@ -170,7 +170,9 @@ const StoryImages = () => {
                   const configImage = {
                       storyImageThumbnail
                   } 
+                  
                   return(
+                    
                       <Image {...configImage}/>
                   );
               })}

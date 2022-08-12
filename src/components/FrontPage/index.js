@@ -52,13 +52,13 @@ const FrontPage = props => {
     }
 
     if(!Array.isArray(data)) return null;
-    // if(data.length<1 ){
-    //     dispatch(
-    //         fetchStoryImagesStart({
-    //             pageSize:1
-    //         })
-    //     )
-    // }
+    if(data.length<1 ){
+        dispatch(
+            fetchStoryImagesStart({
+                pageSize:1
+            })
+        )
+    }
 
     return (
         <div className="frontPagePreview">
@@ -75,9 +75,9 @@ const FrontPage = props => {
                 <div className="slideShow">
 
                     <div className="slideShowImage">
-                        <Link to="/login">
-                            {data.length ===0 && <img src={imgUpload} alt="Upload Image" />}
-                        </Link>
+                        
+                        {data.length ===0 && <img src={imgUpload} alt="Upload Image" />}
+                        
                         {data.length ===1 && data.map((sImage,pos)=>{
                             const {storyImageThumbnail} = sImage;
                             if(!storyImageThumbnail) return null;

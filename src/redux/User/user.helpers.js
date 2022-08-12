@@ -4,8 +4,7 @@ import { eventChannel } from "redux-saga";
 // utils
 
 import { auth } from "../../firebase/utils";
-import { firestore, storage } from "../../firebase/utils";
-
+import { firestore, storage , handleDeletePhotoFromStorage} from "../../firebase/utils";
 
 
 export const handleResetPasswordAPI = (email) => {
@@ -31,10 +30,15 @@ export const handleUpdateImage = (payload) => {
   const image = payload.image
   const field = payload.field
   const storageFolder = payload.storageFolder
+  const urlName = payload.urlName
   const imgname = uuidv4();
+  
 
     return eventChannel(emitter => {
-        
+    
+    
+    (urlName && handleDeletePhotoFromStorage(urlName))
+
     const uploadTask = storage.ref(`${storageFolder}/${imgname}-${image.name}`).put(image);  
     uploadTask.on('state_changed' , snapshot => {
       const  progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -51,7 +55,7 @@ export const handleUpdateImage = (payload) => {
         .collection('students')
         .doc(id)
         .update({
-           [field] : downloadURL
+           [field] : downloadURL,
         })
       .then(()=> {
         emitter({downloadURL})
@@ -69,23 +73,32 @@ export const handleUpdateText = (payload) => {
       const id = payload.id
       const field = payload.field
       const newText = payload.newText
+      const urlName = payload.urlName
      
       return new Promise((resolve, reject) => {
-      firestore
-      .collection('students')
-      .doc(id)
-      .update({
-        [field] : newText
-      })
-      .then(() => {
-      //   console.log(documentID, 2)
-        resolve();
-      })
-      .catch(err => {
-        reject(err);
-      })
+        (urlName && handleDeletePhotoFromStorage(urlName))
+          firestore
+          .collection('students')
+          .doc(id)
+          .update({
+            [field] : newText
+          })
+          .then(() => {
+          //   console.log(documentID, 2)
+            resolve();
+          })
+          .catch(err => {
+            reject(err);
+          })
+        
+       
+      
       }
 )}
+
+
+
+
 
 export const handleFetchUser = uID => {
   return new Promise((resolve, reject) => {

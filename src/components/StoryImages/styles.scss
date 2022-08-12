@@ -68,6 +68,18 @@
         left: 0;
         cursor: pointer;  
     }
+    .deleteIcon{
+      position: absolute;
+      top: 85%;
+      left: 85%;
+      font-size: 25px;
+      z-index: 1000000000;
+      color: red;
+      cursor: pointer;
+      &:hover{
+        font-size: 30px;
+      }
+    }
 }
 
 

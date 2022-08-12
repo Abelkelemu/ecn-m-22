@@ -10,9 +10,9 @@ export const setPercentage = percentage => ({
   payload: percentage
 })
 
-export const deleteImageStart = imageID => ({
+export const deleteImageStart = urlName => ({
   type: imagesTypes.DELETE_IMAGE_START,
-  payload: imageID
+  payload: urlName
 });
   
 export const fetchStoryImagesStart = (filters = {}) => ({

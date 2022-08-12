@@ -59,7 +59,7 @@ const Header = () => {
                            
                                 <span  className='topLoggedIn'> <img src={userImg}/> </span>
                                 <span className='topLoggedIn'> Hello, </span> 
-                                <span  className='topLoggedIn'> {currentUser.firstName.charAt(0).toUpperCase()+currentUser.firstName.slice(1)} </span> 
+                                <span  className='topLoggedIn'> {currentUser.firstName && currentUser.firstName.charAt(0).toUpperCase()+currentUser.firstName.slice(1)} </span> 
                              
                            </li>
                     )} 

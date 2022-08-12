@@ -20,7 +20,7 @@ const YearbookDesign = props => {
             {firstName && lastName && (
               <li>
                 <span className="name">
-                  {firstName.charAt(0).toUpperCase()+firstName.slice(1)} {lastName.charAt(0).toUpperCase()+lastName.slice(1)}
+                  {firstName && firstName.charAt(0).toUpperCase()+firstName.slice(1)} {lastName && lastName.charAt(0).toUpperCase()+lastName.slice(1)}
                 </span>
             </li>
             )}
@@ -28,7 +28,7 @@ const YearbookDesign = props => {
             {yearbookQuote && yearbookQuote && (
               <li>
                 <span className="yearbookQuote">
-                 "{yearbookQuote.charAt(0).toUpperCase()+yearbookQuote.slice(1)}"
+                 "{yearbookQuote && yearbookQuote.charAt(0).toUpperCase()+yearbookQuote.slice(1)}"
                 </span>
             </li>
             )}

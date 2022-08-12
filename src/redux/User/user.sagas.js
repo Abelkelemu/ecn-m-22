@@ -14,7 +14,7 @@ import userTypes from "./user.types";
 import { signInSuccess, signOutUserSuccess, userError, resetPasswordSuccess, signInError, setUser, fetchUserStart, setUserPercentage, setAllUsers } from "./user.actions";
 
 //helper functions
-import { handleResetPasswordAPI, handleUpdateImage,handleUpdateText, handleFetchUser, handleFetchAllUsers} from "./user.helpers";
+import { handleResetPasswordAPI, handleUpdateImage,handleUpdateText, handleFetchUser, handleFetchAllUsers, handleDeletePhotoFromStorage} from "./user.helpers";
 
 export function* getSnapshotFromUserAuth(user) {
     try{
@@ -143,7 +143,7 @@ export function* updateText ({payload}) {
    yield put(fetchUserStart(uID))
   
   }catch(err){
-    //console.log(err)
+    console.log(err)
   }
 }
 
@@ -191,6 +191,9 @@ export function* onUpdateTextStart (){
     yield takeLatest(userTypes.FETCH_ALL_USERS_START,fetchAllUsers)
   }
 
+
+  
+
   export default function* userSagas() {
       yield all([call(onEmailSignInStart),
         call(onCheckUserSession),
@@ -200,6 +203,7 @@ export function* onUpdateTextStart (){
         call(onUpdateTextStart),
         call(onFetchUserStart),
         call(onFetchAllUsersStart),
+   
         
       ])
   }

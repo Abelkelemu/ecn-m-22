@@ -27,3 +27,21 @@ export const getCurrentUser = () => {
         },reject)
     })
 }
+
+
+export const handleDeletePhotoFromStorage = (urlName) => {
+    return new Promise((resolve, reject) => {
+         
+      const delRef = storage.refFromURL(urlName);
+      delRef.delete().then(()=>{
+  
+        resolve();
+      })
+      .catch(err=>{
+        console.log(urlName)
+        reject(err);
+  
+      })
+    
+    }
+  )}

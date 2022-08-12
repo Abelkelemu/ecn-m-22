@@ -51,22 +51,22 @@ export const handleAddImage = payload => {
   })
 }
 
-export const handleDeleteImage = (documentID )=> {
+// export const handleDeleteImage = (documentID )=> {
     
-    return new Promise((resolve, reject) => {
+//     return new Promise((resolve, reject) => {
      
-      firestore
-        .collection('storyImages')
-        .doc(documentID)
-        .delete()
-        .then(() => {
-          resolve();
-        })
-        .catch(err => {
-          reject(err);
-        })
-    });
-}
+//       firestore
+//         .collection('storyImages')
+//         .doc(documentID)
+//         .delete()
+//         .then(() => {
+//           resolve();
+//         })
+//         .catch(err => {
+//           reject(err);
+//         })
+//     });
+// }
 
 export const handleFetchStoryImages = ({pageSize, startAfterDoc,persistImages = []}) => {
   

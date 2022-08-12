@@ -15,7 +15,7 @@ import FormInput from '../forms/FormInput';
 import ProgressBar from '../ProgressBar';
 
 //actions
-import { updateImageStart, updateTextStart, fetchUserStart } from '../../redux/User/user.actions';
+import { updateImageStart, updateTextStart, fetchUserStart,  } from '../../redux/User/user.actions';
 
 
 
@@ -134,7 +134,8 @@ const StudentsArea = () => {
             id ,
             image,
             field :'yearbookimgOneThumbnail',
-            storageFolder : 'yearbook-images-one'
+            storageFolder : 'yearbook-images-one',
+            urlName: yearbookimgOneThumbnail
           })  
         )
         resetForm();
@@ -146,7 +147,8 @@ const StudentsArea = () => {
           updateTextStart({
             id ,
             field :'yearbookimgOneThumbnail',
-            newText: ''
+            newText: '',
+            urlName: yearbookimgOneThumbnail
           })  
         )
     }
@@ -188,7 +190,8 @@ const StudentsArea = () => {
           id ,
           image,
           field :'yellowpageimgThumbnail',
-          storageFolder : 'yellow-page-images'
+          storageFolder : 'yellow-page-images',
+          urlName: yellowpageimgThumbnail,
         })  
       )
       resetForm();
@@ -200,7 +203,8 @@ const StudentsArea = () => {
           updateTextStart({
             id ,
             field :'yellowpageimgThumbnail',
-            newText: ''
+            newText: '',
+            urlName: yellowpageimgThumbnail
           })  
         )
     }

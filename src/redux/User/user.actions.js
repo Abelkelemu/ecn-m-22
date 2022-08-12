@@ -84,3 +84,4 @@ export const setAllUsers = users => ({
   type: userTypes.SET_ALL_USERS,
   payload: users
 });
+

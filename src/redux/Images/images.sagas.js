@@ -3,7 +3,7 @@ import { buffers } from "redux-saga";
 import { takeLatest, call, all, put, take } from "redux-saga/effects";
 
 // utils
-import { auth } from "../../firebase/utils";
+import { auth,handleDeletePhotoFromStorage } from "../../firebase/utils";
 
 //actions
 import { setPercentage, fetchStoryImagesStart ,setStoryImages} from "./images.actions";
@@ -53,10 +53,12 @@ export function* onAddImageStart () {
   
   
 export function* deleteImage({payload}) {
+  const urlName = payload.urlName
     try {
-      yield handleDeleteImage(payload); 
+      yield handleDeletePhotoFromStorage(urlName);
+      yield put (fetchStoryImagesStart()) 
     } catch (err) {
-      // console.log(err);
+       console.log(err);
     }
 }
   

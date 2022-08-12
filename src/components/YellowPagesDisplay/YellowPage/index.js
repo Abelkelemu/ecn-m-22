@@ -24,7 +24,7 @@ const Yellowpage = (props) => {
             {firstName && lastName && (
               <li>
                 <span className="name">
-                  {firstName.charAt(0).toUpperCase()+firstName.slice(1)} {lastName.charAt(0).toUpperCase()+lastName.slice(1)}
+                  {firstName && firstName.charAt(0).toUpperCase()+firstName.slice(1)} {lastName && lastName.charAt(0).toUpperCase()+lastName.slice(1)}
                 </span>
             </li>
             )}
@@ -32,7 +32,7 @@ const Yellowpage = (props) => {
             {emailAddress && emailAddress && (
               <li>
                 <span className="emailAddress">
-                 {emailAddress.charAt(0).toUpperCase()+emailAddress.slice(1)}
+                 {emailAddress &&  emailAddress.charAt(0).toUpperCase()+emailAddress.slice(1)}
                 </span>
             </li>
             )}
