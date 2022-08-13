@@ -1,17 +1,24 @@
 import { useState } from "react";
-
+import { useSelector } from "react-redux";
 // components
 import ImageModal from "../../ImageModal";
 
 //UI
 import { motion } from "framer-motion";
 import { deleteImageStart } from "../../../redux/Images/images.actions";
-
+import { getCurrentUser } from "../../../firebase/utils";
 import { useDispatch } from "react-redux";
 
-const Image = ({storyImageThumbnail}) => {
+
+const mapState = ( {user}) => ({
+  
+  currentUser: user.currentUser,
+  
+})
+const Image = ({storyImageThumbnail, documentID, studentUID}) => {
 
     const dispatch = useDispatch();
+    const {currentUser} = useSelector(mapState);
 
    const [hideModal, setHideModal] = useState(true);
    const toggleModal = () => setHideModal(!hideModal);
@@ -27,9 +34,12 @@ const Image = ({storyImageThumbnail}) => {
         dispatch(
           deleteImageStart({
             urlName: storyImageThumbnail,
+            documentID: documentID,
+            studentUID: studentUID
           })  
         )
     }
+ 
 
     
     if(!storyImageThumbnail) return null;
@@ -53,9 +63,10 @@ const Image = ({storyImageThumbnail}) => {
                animate={{opacity:1}}
                transition={{delay:1}}
               />   
-                <div className="deleteIcon">
-                <i title="Delete Picture" className = "deleteIcon"class="fa fa-trash-alt" aria-hidden="true" onClick={handleSubmitDeleteStorybookImage} ></i>
-              </div> 
+               {currentUser && currentUser.id===studentUID && <div className="deleteIcon">
+                <i title="Delete Picture" className="fa fa-trash-alt" aria-hidden="true" onClick={handleSubmitDeleteStorybookImage} ></i>
+              </div>}
+              
            </motion.div>
        </div>
       

@@ -1,5 +1,5 @@
 import { eventChannel} from "redux-saga";
-import { incrementByOne, firestore,storage } from "../../firebase/utils";
+import { incrementByOne, firestore,storage, decrementByOne } from "../../firebase/utils";
 import { v4 as uuidv4 } from "uuid";
 
 
@@ -30,7 +30,6 @@ export const handleAddImage = payload => {
                 storyImageThumbnail : downloadURL,
                 createdDate : createdDate,
                 studentUID: studentUID,
-                imageName: `${imgname} + ${image.name}`
               })
               .then (()=>{
                 firestore
@@ -51,22 +50,30 @@ export const handleAddImage = payload => {
   })
 }
 
-// export const handleDeleteImage = (documentID )=> {
+export const handleDeletePhotoFromFirestore = (documentID,studentUID )=> {
     
-//     return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
      
-//       firestore
-//         .collection('storyImages')
-//         .doc(documentID)
-//         .delete()
-//         .then(() => {
-//           resolve();
-//         })
-//         .catch(err => {
-//           reject(err);
-//         })
-//     });
-// }
+      firestore
+        .collection('storyImages')
+        .doc(documentID)
+        .delete()
+        .then (()=>{
+          firestore
+          .collection('students')
+          .doc(studentUID)
+          .update({
+            count: decrementByOne
+          })
+        })
+        .then(() => {
+          resolve();
+        })
+        .catch(err => {
+          reject(err);
+        })
+    });
+}
 
 export const handleFetchStoryImages = ({pageSize, startAfterDoc,persistImages = []}) => {
   

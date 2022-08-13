@@ -66,10 +66,14 @@ const FrontPage = props => {
 
             <div className="wrap">
 
-                 <div className="frontPageContent">
+                <div className="frontPageContent">
                     <h1>ECN-M-22</h1>
-                    <p> loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading....</p>
-                    <p> loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading loading....</p>
+                    
+                    <p> "Congratulations! We made it! It's time to celebrate all the hard work that led to this joyful occasion.</p>
+                    <p> The road to graduation was a long, steep climb, so let us take a moment at the summit to be proud of our accomplishments. Embrace the warm memories of the past and big dreams for the future. It’s only up from here!" </p>
+                    <h2 className="credit">Wishes from Zelalem Bogale</h2>
+                    <p>This website will hold our photos, contacts and memories till the end of time. It holds our legacy in ECN Mauritius ✊</p>
+                
                 </div> 
 
                 <div className="slideShow">
@@ -82,12 +86,13 @@ const FrontPage = props => {
                             const {storyImageThumbnail} = sImage;
                             if(!storyImageThumbnail) return null;
                             return(
-                                <AnimatePresence exitBeforeEnter>
+                                <AnimatePresence exitBeforeEnter key={pos}>
                                     <motion.img src={storyImageThumbnail} alt="STORYBOOK" 
                                         initial={{x:"-20vh",opacity:0}}
                                         animate={{x:0,opacity:1}}
                                         transition={{delay:1}}
                                         key={storyImageThumbnail}
+                                        
                                 /> 
                                 </AnimatePresence>    
                             );

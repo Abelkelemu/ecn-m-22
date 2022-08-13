@@ -67,7 +67,7 @@ const StudentsYearbook = () => {
                             yearbookQuote
                         } 
                         return(
-                            <YearbookDesign {...configImage}/>
+                            <YearbookDesign {...configImage} key={pos}/>
                         );
                     })}
                 </div>

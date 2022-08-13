@@ -11,7 +11,7 @@ const Footer = () => {
               <a href="https://www.instagram.com/abel_kd_/" >Contact me</a> 
               <a href="https://www.instagram.com/abel_kd_/">
                 <span className="instaFooterIcon">
-                  <i class="fab fa-instagram"></i>
+                  <i className="fab fa-instagram"></i>
                 </span>
               </a>          
         </div>

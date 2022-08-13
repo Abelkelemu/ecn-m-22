@@ -64,7 +64,7 @@ const YellowPagesDisplay = () => {
                         facebookUsername
                     } 
                     return(
-                        <Yellowpage {...configImage}/>
+                        <Yellowpage {...configImage} key={pos}/>
                     );
                 })}
             </div>

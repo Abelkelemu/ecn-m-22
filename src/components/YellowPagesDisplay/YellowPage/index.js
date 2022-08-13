@@ -49,7 +49,7 @@ const Yellowpage = (props) => {
               <li>
                 <a title= "Instagram" href={"https://www.instagram.com/"+ instagramUsername +"/"} >
                   <span className="instaIcon">
-                    <i class="fab fa-instagram"></i>
+                    <i className="fab fa-instagram"></i>
                   </span>
             
                 <span className="instagramUsername">    
@@ -65,7 +65,7 @@ const Yellowpage = (props) => {
 
                 <a title="Facebook" href={"https://www.facebook.com/" + facebookUsername}>
                     <span className="facebookIcon">
-                       <i class="fab fa-facebook-f"></i>
+                       <i className="fab fa-facebook-f"></i>
                     </span>
                 
                     <span className="facebookUsername">

@@ -284,11 +284,11 @@ const StudentsArea = () => {
             <div className="icons">
 
               <div className="deleteIcon">
-                <i title="Delete Picture" className = "deleteIcon"class="fa fa-trash-alt" aria-hidden="true" onClick={handleSubmitDeleteYearbookPhoto}></i>
+                <i title="Delete Picture" className="fa fa-trash-alt" aria-hidden="true" onClick={handleSubmitDeleteYearbookPhoto}></i>
               </div>
 
               <div className="editIcon">
-                <i title = "Edit Picture" class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal()}></i>
+                <i title = "Edit Picture" className="fa fa-edit" aria-hidden="true" onClick={() => toggleModal()}></i>
               </div>
 
             </div>
@@ -356,7 +356,7 @@ const StudentsArea = () => {
               </ul>
               
               <div className="iconTextEdit">
-                   <i title="Edit Texts "class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal2()}></i>
+                   <i title="Edit Texts "className="fa fa-edit" aria-hidden="true" onClick={() => toggleModal2()}></i>
               </div>
 
               <Modal {...configModal2}>
@@ -365,24 +365,24 @@ const StudentsArea = () => {
                     <FormInput
                       type= "text"
                       name="fN"
-                      value={fN}
-                      placeholder={fN}
+                      value={fN || ''}
+                      placeholder={firstName}
                       handleChange = {e => setFN(e.target.value)}
                       />
                       Last Name
                       <FormInput
                       type= "text"
                       name="lN"
-                      value={lN}
-                      placeholder={lN}
+                      value={lN || ''}
+                      placeholder={lastName}
                       handleChange = {e => setLN(e.target.value)}
                       />
                       Yearbook Quote
                       <FormInput
                       type= "text"
                       name="ybQ"
-                      value={ybQ}
-                      placeholder={ybQ}
+                      value={ybQ || ''}
+                      placeholder={yearbookQuote}
                       handleChange = {e => setYbQ(e.target.value)}
                       />
                       <Button type= "submit" >
@@ -405,10 +405,10 @@ const StudentsArea = () => {
            
             <div className="icons">
               <div className="deleteIcon">
-                <i title="Delete Picture" className = "deleteIcon"class="fa fa-trash-alt" aria-hidden="true" onClick={handleSubmitDeleteYellowPagePhoto}></i>
+                <i title="Delete Picture" className="fa fa-trash-alt" aria-hidden="true" onClick={handleSubmitDeleteYellowPagePhoto}></i>
               </div>
               <div className="editIcon">
-                <i title = "Edit Picture" class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal4()}></i>
+                <i title = "Edit Picture" className="fa fa-edit" aria-hidden="true" onClick={() => toggleModal4()}></i>
               </div>
             </div>
 
@@ -486,7 +486,7 @@ const StudentsArea = () => {
               </ul>
               
               <div className="iconTextEdit">
-                   <i title="Edit Texts "class="fa fa-edit" aria-hidden="true" onClick={() => toggleModal3()}></i>
+                   <i title="Edit Texts "className="fa fa-edit" aria-hidden="true" onClick={() => toggleModal3()}></i>
               </div>
               <br />
               <Modal {...configModal3}>
@@ -495,24 +495,24 @@ const StudentsArea = () => {
                     <FormInput
                       type= "text"
                       name="fN"
-                      value={fN}
-                      placeholder={fN}
+                      value={fN || ''}
+                      placeholder={firstName}
                       handleChange = {e => setFN(e.target.value)}
                       />
                       Last Name
                       <FormInput
                       type= "text"
                       name="lN"
-                      value={lN}
-                      placeholder={lN}
+                      value={lN || ''}
+                      placeholder={lastName}
                       handleChange = {e => setLN(e.target.value)}
                       />
                     Email Address
                     <FormInput
                       type= "email"
                       name="fN"
-                      value={eA}
-                      placeholder={eA}
+                      value={eA || ''}
+                      placeholder={emailAddress}
                       handleChange = {e => setEA(e.target.value)}
                       />
                       Phone Number
@@ -520,23 +520,23 @@ const StudentsArea = () => {
                       <PhoneInput
                       className='phoneInput'
                         placeholder = {phoneNumber}
-                        value={pN}
+                        value={pN || ''}
                         onChange={setPN}/>
                       
                       Instagram Username
                       <FormInput
                       type= "text"
                       name="ybQ"
-                      value={igU}
-                      placeholder={igU}
+                      value={igU || ''}
+                      placeholder={instagramUsername}
                       handleChange = {e => setIgU(e.target.value)}
                       />
                       Facebook Username
                       <FormInput
                       type= "text"
                       name="ybQ"
-                      value={fbU}
-                      placeholder={fbU}
+                      value={fbU || ''}
+                      placeholder={facebookUsername}
                       handleChange = {e => setFbU(e.target.value)}
                       />
                       <Button type= "submit">

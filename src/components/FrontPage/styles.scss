@@ -5,6 +5,7 @@
      background-repeat: no-repeat;
      background-size:cover;
      
+     
     .wrap{
         display: flex;
         flex-wrap: wrap;
@@ -23,9 +24,15 @@
 .frontPageContent{
     width: 30%;
     margin: 0rem auto 4rem;
-    padding: 2rem 2rem; 
+    padding: 1rem 2rem; 
     background-image:linear-gradient(to bottom right,#FFA500,white,#FFA500);
     border-radius: 2rem;
+    .credit{
+        
+            text-align: right;
+            font-size: 1.7rem;
+        
+    }
 }
 
 .slideShow{

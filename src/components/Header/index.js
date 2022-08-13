@@ -34,7 +34,7 @@ const Header = () => {
         <header className='header'>
 
             <div className="wrap">
-                {/* new */}
+                
 
                 {clicked && ( <div className="modalOverlay" onClick={() => {handleClick()}} />)}
                 <div className="menu-icon" onClick={()=>{handleClick()}}>
@@ -49,7 +49,7 @@ const Header = () => {
                             <li >
                             <Link to="/login" onClick={()=>handleClick()}>
                              <span> <img src={userImg}/> </span> 
-                             <span> <Link to="/login" onClick={()=>handleClick()}>  Sign In  </Link> </span>  
+                             <span>  Sign In  </span>  
                             </Link>
                            </li>
                     )}
@@ -123,19 +123,22 @@ const Header = () => {
                             </Link>
                         </li>
                         )}
+                        
 
-                        {currentUser && [
+                        {currentUser && 
                             <li>
                                 <Link to='/studentArea'>
                                      My account
                                 </Link>
-                            </li>,
+                            </li>}
+                        {currentUser && 
                             <li>
-                                <span onClick = {()=>signOut()}>
-                                    LogOut
-                                </span> 
-                            </li>
-                        ]}
+                            <span onClick = {()=>signOut()}>
+                                LogOut
+                            </span> 
+                        </li>}
+                            
+                        
                     </ul>
                 </div>
 
@@ -169,18 +172,18 @@ const Header = () => {
                         </li>
                         )}
 
-                        {currentUser && [
+                        {currentUser && 
                             <li>
                                 <Link to='/studentArea'>
                                      My account
                                 </Link>
-                            </li>,
+                            </li>}
+                        {currentUser && 
                             <li>
-                                <span onClick = {()=>signOut()}>
-                                    LogOut
-                                </span> 
-                            </li>
-                        ]}
+                            <span onClick = {()=>signOut()}>
+                                LogOut
+                            </span> 
+                        </li>}
                         
                     </ul>
                 </div> 
@@ -200,18 +203,18 @@ const Header = () => {
                         </li>
                         )}
 
-                        {currentUser && [
+                        {currentUser && 
                             <li>
                                 <Link to='/studentArea'>
                                      My account
                                 </Link>
-                            </li>,
+                            </li>}
+                        {currentUser && 
                             <li>
-                                <span onClick = {()=>signOut()}>
-                                    LogOut
-                                </span> 
-                            </li>
-                        ]}
+                            <span onClick = {()=>signOut()}>
+                                LogOut
+                            </span> 
+                        </li>}
                         
                     </ul>
                 </div>   

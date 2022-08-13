@@ -10,7 +10,7 @@ import { setPercentage, fetchStoryImagesStart ,setStoryImages} from "./images.ac
 import { fetchUserStart } from "../User/user.actions";
 
 // helper functions
-import { handleAddImage, handleDeleteImage, handleFetchStoryImages } from "./images.helper";
+import { handleAddImage, handleDeletePhotoFromFirestore, handleFetchStoryImages } from "./images.helper";
 
 //Scripts
 import imagesTypes from "./images.types";
@@ -54,8 +54,13 @@ export function* onAddImageStart () {
   
 export function* deleteImage({payload}) {
   const urlName = payload.urlName
+  const documentID = payload.documentID
+  const studentUID = payload.studentUID
     try {
+      yield handleDeletePhotoFromFirestore(documentID,studentUID);
       yield handleDeletePhotoFromStorage(urlName);
+      yield put((fetchUserStart(studentUID)))
+
       yield put (fetchStoryImagesStart()) 
     } catch (err) {
        console.log(err);

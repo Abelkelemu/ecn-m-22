@@ -1,6 +1,7 @@
 import React from 'react';
 import {  useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import imageCompression from 'browser-image-compression';
 import './styles.scss'
 
 // actions
@@ -32,6 +33,7 @@ const StoryImages = () => {
   const inputRef = React.useRef();
   const {sImages, currentUser, percentage,student} = useSelector(mapState);
   const {data, queryDoc ,isLastPage} = sImages;
+ 
   const [hideModal, setHideModal] = useState(true);  
   const [image, setImage] = useState(null);
   const [imagePreview, setimagePreview] = useState();
@@ -73,13 +75,32 @@ const StoryImages = () => {
     
   const types = ['image/png', 'image/jpeg', 'image/jpg']; 
   
+  const options = {
+    maxSizeMB: 1,
+    maxWidthorHeight: 1920,
+    useWebWorker: true,
+  }
+
   const ImgHandler = (e) => {
 
-        let selectedFile = e.target.files[0];     
-        if (selectedFile && types.includes(selectedFile.type)) {        
+        let selectedFile = e.target.files[0];  
+        let selectedFileSize = e.target.files[0].size;   
+        if (selectedFile && types.includes(selectedFile.type)) { 
+          
+          if(options.maxSizeMB >= selectedFileSize/1000000){
+            
             setImage(selectedFile);
             setError('')
             setimagePreview(URL.createObjectURL(selectedFile));  
+          }
+          else{
+            imageCompression(selectedFile,options).then((result)=>{
+              setImage(result);
+              setError('')
+              setimagePreview(URL.createObjectURL(result));          
+            })
+          }
+            
         }
         else {
             setError('Please select a valid image type (jpg , jpeg or png).');
@@ -117,10 +138,10 @@ const StoryImages = () => {
       
           <h1>Our Memories Are Countless... </h1>
           {percentage>0 && <ProgressBar percentage = {percentage}/>}
-          {percentage===0 && currentUser && currentUser.count<5 && student.count!==5   && <span onClick={() => toggleModal()}>
+          {percentage===0 && currentUser && currentUser.count<25 && student.count!==25   && <span onClick={() => toggleModal()}>
               +
           </span>}
-          {percentage===0 && currentUser && currentUser.count>=5 && currentUser.id=='MZN0XXPpERhy1Q6LPA8O6Q6zsQy1'   && <span onClick={() => toggleModal()}>
+          {percentage===0 && currentUser && currentUser.count>=25 && currentUser.id=='MZN0XXPpERhy1Q6LPA8O6Q6zsQy1'   && <span onClick={() => toggleModal()}>
               +
           </span>}
           <div className="previewWrap"> 
@@ -166,14 +187,19 @@ const StoryImages = () => {
 
               {data.map((sImage,pos)=>{
                   const {storyImageThumbnail} = sImage;
+                  const {documentID} = sImage
+                  const {studentUID} = sImage
                   if(!storyImageThumbnail) return null;
                   const configImage = {
-                      storyImageThumbnail
+                      storyImageThumbnail,
+                      documentID,
+                      studentUID,
+                                        
                   } 
                   
                   return(
                     
-                      <Image {...configImage}/>
+                      <Image {...configImage} key={pos}/>
                   );
               })}
             </div>
