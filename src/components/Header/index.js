@@ -224,8 +224,5 @@ const Header = () => {
 }
 
 
-// no use
-// Header.defaultProps = {
-//     currentUser:null
-// }
+
 export default Header;

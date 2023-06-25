@@ -5,7 +5,11 @@
     width: 100%;
     padding: 0 10rem;
     margin:  0;
-    background-image:linear-gradient(to bottom right,#FFA500,black,#FFA500);
+    // background-image:linear-gradient(to bottom right,#FFA500,black,#FFA500);
+    background-image:
+    url("./../../assets/frontPageBg.jpg");
+    // background-repeat: no-repeat;
+    // background-size:cover;
     .yellowPagePreviewResults{
         display: flex;
         flex-wrap: wrap;
@@ -15,7 +19,7 @@
       margin: 0 ;
       font-size: 5rem;
       text-align: center;
-      color: white;
+      color: black;
       padding: 4rem 0;
     }
 }
@@ -24,14 +28,15 @@
     width: 33.333333333333333%;
     margin: 0 auto 2rem;
     padding: 0 10px;
-
+    
     .thumb {
         display: block;
         width: 100%;
+       
     
         img {
           display: block;
-          width: 90%;
+          width: 70%;
           height: 350px;
           margin: 0;
           box-shadow: 6px 1px 1px #FFA500;
@@ -52,15 +57,16 @@
     
         ul {
           li {
-            color: white;
+            color: black;
             display: block;
             width: 100%;
             list-style-type: none;
             text-align: left;
             margin: 0 0 .5rem;
+            font-weight: bold;
     
              a {
-                  color: white;
+                  color: black;
             }
     
                 .name {
@@ -101,9 +107,21 @@
       }
 }
 
+@media only screen and (max-width:1250px){
+    .studentPreview{
+       
+        .thumb{
+            img{
+                width: 80%;
+            }
+        }
+    }
+}
+
 @media only screen and (max-width:1000px){
     .studentPreview{
         width: 50%;
+    
     }
 }
 
@@ -114,18 +132,32 @@
     }
 }
 
-@media only screen and (max-width:600px){
+@media only screen and (max-width:660px){
     .studentPreview{
         width: 100%;
+        .thumb{
+            img{
+                width: 100%;
+            }
+        }
     }
     .yellowPagePreview{
-        padding: 0 9rem;
+        padding: 0 13rem;
         
     
     }
 }
 
-@media only screen and (max-width:460px){
+@media only screen and (max-width:540px){
+   
+    .yellowPagePreview{
+        padding: 0 10rem;
+       
+    
+    }
+}
+
+@media only screen and (max-width:480px){
    
     .yellowPagePreview{
         padding: 0 6rem;

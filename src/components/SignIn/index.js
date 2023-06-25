@@ -89,7 +89,6 @@ const SignIn = () => {
                         placeholder="Enter a registered email address"
                         handleChange={e => setEmail(e.target.value)}
                     />
-
                     <FormInput 
                         type="password"
                         name="password"
@@ -97,7 +96,6 @@ const SignIn = () => {
                         placeholder="Password"
                         handleChange={e => setPassword(e.target.value)}
                     />
-             
                     <Button>
                         Sign in
                     </Button> 

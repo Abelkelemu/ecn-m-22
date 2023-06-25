@@ -12,8 +12,6 @@ import LoadMore from "../LoadMore";
 // assets
 import imgUpload from "./../../assets/uploadImg.PNG"
 
-
-
 // UI
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -67,13 +65,13 @@ const FrontPage = props => {
             <div className="wrap">
 
                 <div className="frontPageContent">
-                    <h1>ECN-M-22</h1>
+                    <h1 className="bigTitle">ECN-M-22</h1>
                     
                     <p> "Congratulations! We made it! It's time to celebrate all the hard work that led to this joyful occasion.</p>
                     <p> The road to graduation was a long, steep climb, so let us take a moment at the summit to be proud of our accomplishments. Embrace the warm memories of the past and big dreams for the future. It’s only up from here!" </p>
                     <h2 className="credit">Wishes from Zelalem Bogale</h2>
                     <p>This website will hold our photos, contacts and memories till the end of time. It holds our legacy in ECN Mauritius ✊</p>
-                
+                    <h2 className="credit">Designed by Abel Dessalegne</h2>
                 </div> 
 
                 <div className="slideShow">

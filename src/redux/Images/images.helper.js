@@ -81,7 +81,6 @@ export const handleFetchStoryImages = ({pageSize, startAfterDoc,persistImages = 
   
 
       let ref = firestore.collection('storyImages').orderBy('createdDate','desc').limit(pageSize);
-      
       if(startAfterDoc) ref = ref.startAfter(startAfterDoc);
         ref
           .get() 
